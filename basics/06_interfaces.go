@@ -35,7 +35,7 @@ func (s Square) calculateArea() float64 {
 
 // 🟧 to string method for square
 func (s Square) toString() {
-	fmt.Printf("Details of Shape %T are %+v\n", s, s)
+	fmt.Printf("Details of Square : %+v\n", s)
 }
 
 // Rectangle 🟪
@@ -51,7 +51,7 @@ func (r Rectangle) calculateArea() float64 {
 
 // 🟪 to string method for rectangle
 func (s Rectangle) toString() {
-	fmt.Printf("Details of Shape %T are %+v\n", s, s)
+	fmt.Printf("Details Rectangle : %+v\n", s)
 }
 
 func interfacesInGo() {
