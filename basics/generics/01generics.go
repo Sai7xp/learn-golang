@@ -128,4 +128,7 @@ func main() {
 	fmt.Printf("Product of %T is %v\n", uint64Arr, findProduct[uint64](uint64Arr))
 	fmt.Printf("Product of %T is %v\n", float32Arr, findProduct[float32](float32Arr))
 	fmt.Printf("Product of %T is %v\n", float64Arr, findProduct[float64](float64Arr))
+
+	/// Generics with Structs
+	genericsWithStructs()
 }
