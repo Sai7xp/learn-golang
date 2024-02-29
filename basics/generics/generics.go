@@ -9,12 +9,6 @@ import (
 	"fmt"
 )
 
-// type alias in go lang
-type UserName string
-
-// type Definition
-type UserId = int
-
 // function for adding integers
 func addIntegers(a int, b int) int {
 	return a + b
