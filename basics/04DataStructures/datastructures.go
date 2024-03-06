@@ -14,6 +14,10 @@ import (
 	"time"
 )
 
+func main() {
+	dataStructuresInGo()
+}
+
 // read input from user
 func readInputFromUserUsingBufio() {
 	scaner := bufio.NewScanner(os.Stdin)
@@ -21,7 +25,7 @@ func readInputFromUserUsingBufio() {
 	scaner.Scan()
 	input := scaner.Text()
 	fmt.Println("Hi", input)
-	fmt.Print("Enter Your Year you were born ")
+	fmt.Print("Enter Year you were born ")
 	scaner.Scan()
 	yob, e := strconv.ParseInt(scaner.Text(), 10, 64)
 	if e == nil {
@@ -39,7 +43,7 @@ func readInputFromUserUsingBufio() {
 }
 func dataStructuresInGo() {
 	fmt.Println("→→→→→→→→→→→ START:BLOCK DATA STRUCTURES IN GO LANG ←←←←←←←←←")
-	// readInputFromUserUsingBufio()
+	readInputFromUserUsingBufio()
 
 	// Arrays in Go
 	fmt.Println("ARRAYS in Go Lang")
@@ -96,6 +100,7 @@ func slicesInGo() {
 	var nums = []int{1, 2, 3, 4}
 	negNums := []int{-1, -2, -3}
 	negNums[0] = -0
+
 	fmt.Println("Nums Slice values ", nums)
 	nums = append(nums, 23, 45) // add two values
 	fmt.Println("Updated Nums : ", nums)
@@ -124,8 +129,10 @@ func slicesInGo() {
 
 	var initSliceWithNoElements = []int{}
 	inSliceNoEle := []int{}
+	sliceUsingMake := make([]int, 0)
 	fmt.Println("initSliceWithNoElements ", initSliceWithNoElements, initSliceWithNoElements == nil, len(initSliceWithNoElements))
 	fmt.Println("inSliceNoEle ", inSliceNoEle, inSliceNoEle == nil, len(inSliceNoEle))
+	fmt.Println("sliceUsingMake ", sliceUsingMake, sliceUsingMake == nil, len(sliceUsingMake))
 
 	/// LENGTH and CAPACITY of SLICE
 	s := []int{2, 3, 5, 7, 11, 13}
@@ -177,6 +184,11 @@ func flowControlInGO() {
 		if i == len(duplicateFruits)-1 {
 			fmt.Println()
 		}
+	}
+	/// new feature in go lang 1.22
+	fmt.Println("Go 1.22 New Feature -> Ranging over integers✨")
+	for i := range 12 {
+		fmt.Println(i)
 	}
 
 	fmt.Println("------------ END: FLOW CONTROL IN GO LANG ------------")
