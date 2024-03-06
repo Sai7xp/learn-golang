@@ -10,6 +10,10 @@ const (
 	Big = 1 << 200
 )
 
+func main() {
+	functionsInGo()
+}
+
 func functionsInGo() {
 	fmt.Println("→→→→→→→→→→→ START:BLOCK FUNCTIONS IN GO LANG ←←←←←←←←←")
 	fmt.Println("🏁 Welcome To Functions in Go Lang. Random Number is", rand.Intn(10))
@@ -51,18 +55,22 @@ func functionsInGo() {
 	}("Go")
 
 	var ano = func(n int) {
-		fmt.Println("Hello from Anonymous Function")
+		fmt.Println("Hello from Anonymous Function", n)
 	}
 	ano(12)
-
-	/// Closures
-	closures()
 
 }
 
 // Function with one argument of type int
 func power(x, y int) int {
-	return x * x
+	if y == 0 {
+		return 1
+	}
+	res := 1
+	for times := 1; times <= y; times++ {
+		res *= x
+	}
+	return res
 }
 
 // Function with Multiple Return Statements
@@ -106,6 +114,8 @@ func sumOfFirstNUsingRecursion(n int) int {
 }
 
 // recursive function for finding the factorial of a number
+// Recursion
+// 5 -> 1 * 2 * 3 * 4 * 5
 func factorialOfN(n int) int {
 	if n == 0 {
 		return 1
@@ -119,6 +129,7 @@ type Input struct {
 	B int
 }
 
+// function with naked return
 func sumOfTwo(i Input) (s int) {
 	s = i.A + i.B
 	return
