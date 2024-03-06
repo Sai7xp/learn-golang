@@ -1,8 +1,10 @@
 package main
 
-import "fmt"
-
-import "learngo/utils"
+import (
+	"fmt"
+	"learngo/utils"
+	"strconv"
+)
 
 // variable declarations without initializers 🪹
 /*
@@ -54,21 +56,8 @@ func main() {
 	// 2️⃣ Data Types
 	basicDataTypes()
 
-	// 3️⃣ Functions
-	// functionsInGo() // calling a function which is defined in another file but the package is same
-	// we have to use the command `go run .` to run this file
-
 	// calling a function from another package
 	fmt.Println("Sum of two numbers : ", utils.Add(totalPlanets, kotlin))
-
-	// 4️⃣ Data Structures (Arrays, Slice, Maps, Structs, Interface....)
-	dataStructuresInGo()
-
-	/// 5️⃣ structs, maps
-	structsAndMapsInGo()
-
-	/// 6️⃣ Interfaces In Go
-	interfacesInGo()
 
 }
 
@@ -116,7 +105,7 @@ func basicDataTypes() {
 	xx, yy, zz := 0, 5, 6
 	var xyz, zyx int
 	fmt.Println(xx, yy, zz) // 0 5 6
-	fmt.Println(xyz, zyx) // 0 0
+	fmt.Println(xyz, zyx)   // 0 0
 
 	var oneByte byte = 255
 	var Uint8Bits uint8 = 255
@@ -130,4 +119,7 @@ func basicDataTypes() {
 
 	fmt.Printf("Type: %T Value: %v\n", ToBe, ToBe)
 	fmt.Printf("Type: %T Value: %v\n", MaxInt, MaxInt)
+
+	n := int64(123)
+	fmt.Println(strconv.FormatInt(n, 2)) // 1111011
 }
