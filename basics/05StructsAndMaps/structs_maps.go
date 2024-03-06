@@ -6,6 +6,10 @@ import (
 	// "time"
 )
 
+func main() {
+	structsAndMapsInGo()
+}
+
 func structsAndMapsInGo() {
 	/// Maps
 	fmt.Println("\n→→→→→→→→→→→ START:BLOCK MAPS IN GO LANG ←←←←←←←←←")
@@ -23,6 +27,7 @@ func mapsInGo() {
 	// only declaration
 	var mapIngo map[int]string
 	fmt.Println(mapIngo)
+	// mapIngo[89] = "Eighty Nine" // 💀 assignment to entry in nil map ❌
 	fmt.Println("is mapIngo value == nil ? : ", mapIngo == nil) // true
 	fmt.Println(len(mapIngo))
 	fmt.Println()
