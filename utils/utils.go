@@ -8,3 +8,9 @@ func Add(x, y int) (z int) {
 	z = x + y
 	return
 }
+
+func CheckForNilError(err error) {
+	if err != nil {
+		panic(err)
+	}
+}
