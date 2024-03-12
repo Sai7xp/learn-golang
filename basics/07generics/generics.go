@@ -89,7 +89,7 @@ func main() {
 
 	nums := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
 	floatValues := []float64{1.1, 2.2, 3.3}
-	/// generate 3 table
+	/// generate 3rd table
 	multiplesOfThree := mapValues(nums, func(i int) int { return i * 3 })
 	fmt.Println("Multiples of 3 are : ", multiplesOfThree)
 	multiplesOfThree = genericMapValues(nums, func(i int) int { return i * 3 })

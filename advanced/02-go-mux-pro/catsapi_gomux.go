@@ -45,6 +45,9 @@ func main() {
 	/// DELETE: Remove Cat
 	router.HandleFunc("/deleteCat/{catName}", deleteCatHandler).Methods("DELETE")
 
+	/// wrong route handler
+	router.NotFoundHandler = http.HandlerFunc(routeNotFoundHandler)
+
 	fmt.Println("Server started at port 5050")
 	log.Fatal(http.ListenAndServe(":5050", router))
 
@@ -112,38 +115,44 @@ func addCatHandler(w http.ResponseWriter, r *http.Request) {
 	var newCat datamodels.Cat
 	json.NewDecoder(r.Body).Decode(&newCat)
 	if newCat.Owner == nil {
-		json.NewEncoder(w).Encode("Owner details are required to add cat details")
+		// expected := `{"alive": true}`
+		// json.NewEncoder(w).Encode(`{"message":"Owner details are required to Add Cat Details"}`)
+		w.Write([]byte(`{"message":"Owner details are required to Add Cat Details"}`))
 		return
 	} else {
 		allCatsDb = append(allCatsDb, newCat)
 		message := fmt.Sprintf("%s New Cat Added Successfully!", newCat.Name)
+		newCat.PrintInfo()
+		w.WriteHeader(http.StatusCreated)
 		json.NewEncoder(w).Encode(map[string]string{"message": message, "data": newCat.ToString()})
 	}
 }
 
 // TODO: update Cat handler
 func updateCatHandler(w http.ResponseWriter, r *http.Request) {
-
 }
 
 // Delete Cat Handler
 func deleteCatHandler(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 
-	found := false
 	/// get the catname from params
 	for index, eachCat := range allCatsDb {
 		if strings.EqualFold(eachCat.Name, params["catName"]) {
-			found = true
 			allCatsDb = append(allCatsDb[:index], allCatsDb[index+1:]...)
 			w.WriteHeader(http.StatusOK)
 			message := fmt.Sprintf("%s Deleted Successfully from db", params["catName"])
 			json.NewEncoder(w).Encode(map[string]string{"message": message})
-
+			return
 		}
 	}
-	if !found {
-		w.WriteHeader(http.StatusBadRequest)
-		w.Write([]byte("Cat Details Not Found"))
-	}
+	w.WriteHeader(http.StatusBadRequest)
+	w.Write([]byte("Cat Details Not Found"))
+}
+
+func routeNotFoundHandler(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(http.StatusNotFound)
+	w.Write([]byte(`{"message":"🐱 Meow! It seems like you've wandered off into uncharted territory. 
+    Our feline friends couldn't find the page you're looking for. 🐾
+    But don't worry, there are plenty of purrfect paths to explore on our Cats API! 😺"}`))
 }

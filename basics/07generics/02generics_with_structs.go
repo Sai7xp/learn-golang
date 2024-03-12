@@ -24,8 +24,6 @@ type MadMan[T CustomData] struct {
 	SaidSomething T
 }
 
-/// we can use multiple generic values as well
-
 func genericsWithStructs() {
 	fmt.Println("\n----> BLOCK:START GENERICS with struct <------")
 	user1 := Student[[]float64]{Id: 4, Name: "user1", Marks: []float64{74.5, 71.8}}
