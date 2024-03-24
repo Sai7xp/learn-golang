@@ -7,7 +7,11 @@ package main
 
 import "fmt"
 
-// n Go, an interface is a collection of method signatures that a type can implement.
+func main() {
+	interfacesInGo()
+}
+
+// In Go, an interface is a collection of method signatures that a type can implement.
 // Interfaces provide a way to specify the behavior of an object:
 // what methods it should have, without defining how those methods should be implemented.
 //  This promotes polymorphism and allows different types to be treated
@@ -29,6 +33,7 @@ type Square struct {
 }
 
 // 🟧 Method to calculate square area
+// receiver function
 func (s Square) calculateArea() float64 {
 	return s.side * s.side
 }
