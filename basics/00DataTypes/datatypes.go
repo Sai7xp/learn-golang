@@ -114,7 +114,7 @@ func basicDataTypes() {
 	fmt.Printf("Uint8Bits Type : %T and value : %v\n", Uint8Bits, Uint8Bits)
 
 	maxSignedInteger := 9223372036854775807
-	// maxSignedInteger := 1<<63 - 1 // correct statement
+	// maxSignedInteger := 1<<63 - 1 // valid statement
 	fmt.Println("Max Signed Integer : ", maxSignedInteger)
 
 	fmt.Printf("Type: %T Value: %v\n", ToBe, ToBe)
