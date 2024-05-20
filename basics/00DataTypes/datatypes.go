@@ -41,7 +41,7 @@ func main() {
 	fmt.Println(typescript)
 	fmt.Println(totalPlanets)
 
-	// 😎 Short Variables
+	// 😎 Short Variables :=
 	println("Short Variables in GO Lang")
 	{
 		// Block Level Scope
@@ -50,6 +50,13 @@ func main() {
 	}
 	x := 90.0988
 	fmt.Println("Short Notation: ", x)
+	/*
+		The := operator can do one trick that you cannot do with `var`
+		it allows you to assign values to existing variables, too.
+		As long as there is one new variable on the lefthand side of the :=
+		x := 10
+		x, y := 30, "hello"
+	*/
 	myvar1, myvar2, myvar3 := 800, "Geeks", 47.56
 	fmt.Println(myvar1, myvar2, myvar3)
 
