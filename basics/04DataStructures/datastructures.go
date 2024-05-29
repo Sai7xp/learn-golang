@@ -87,6 +87,15 @@ func dataStructuresInGo() {
 
 }
 
+/*
+ARRAY
+var s [2]int
+fmt.Println(s) // prints [0,0]
+
+SLICE
+var sl []int
+fmt.Println(sl) // prints nil
+*/
 func slicesInGo() {
 	// Slices in Go
 	fmt.Println("------------ START: SLICES IN GO LANG ------------")
@@ -135,6 +144,15 @@ func slicesInGo() {
 	fmt.Println("sliceUsingMake ", sliceUsingMake, sliceUsingMake == nil, len(sliceUsingMake))
 
 	/// LENGTH and CAPACITY of SLICE
+	/*
+		When a slice grows via append, it takes time for the Go runtime to allocate new mem‐ory
+		and copy the existing data from the old memory to the new.
+		The old memory also needs to be garbage collected.
+
+		For this reason, the Go runtime usually increases a slice by more than one each time
+		it runs out of capacity. The rules as of Go 1.14 are to double the size of the slice
+		when the capacity is less than 1,024 and then grow by at least 25% afterward
+	*/
 	s := []int{2, 3, 5, 7, 11, 13}
 	printSlice(s) // len=6 cap=6 [2 3 5 7 11 13]
 
@@ -149,6 +167,9 @@ func slicesInGo() {
 	// Drop its first two values
 	s = s[2:]
 	printSlice(s) // len=2 cap=4 [5 7]
+
+	s = append(s, []int{91, 92, 93, 94}...)
+	printSlice(s) // len=6 cap=8 [5 7 91 92 93 94] 🌻 Capacity increased from 4 to 8(doubled)
 	fmt.Println("------------ END: SLICES IN GO LANG ------------")
 }
 

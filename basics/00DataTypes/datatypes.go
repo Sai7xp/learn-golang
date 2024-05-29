@@ -6,6 +6,14 @@ import (
 	"strconv"
 )
 
+/* 🌻🌻🌻🌻🌻🌻🌻
+1. Basic type: Numbers, Strings, and Booleans
+2. Aggregate type: Array and Structs(Composite Type)
+3. Reference type: Pointers, slices, maps, functions, and channels
+4. Interface type
+
+🌻🌻🌻🌻🌻🌻🌻 */
+
 // variable declarations without initializers 🪹
 /*
 	0 for numeric types,
