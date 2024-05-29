@@ -10,30 +10,44 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"packages-and-modules/utils"
 	"strconv"
 
+	"github.com/fatih/color"
 	"github.com/gorilla/mux"
 )
 
-// /
-// / Modules in GO
-// /
-// / Let's see how to import third party go modules
-// /
+/*
+Modules & Packages in GO
+Let's see how to import third party go modules
+*/
 func main() {
-	fmt.Println("Modules in Go")
+	fmt.Println("Modules and Packages in Go")
+
+	/* 🌻🌻🌻
+	   PACKAGES
+	   	A package in Go is a collection of one or more related .go files
+		Primary purpose of packages is to help you isolate and reuse code.
+
+		`main` is actually a special package name which indicates that
+		the package contains the code for an executable application.
+		That is, it indicates that the package contains code that
+		can be built into a binary and run.
+	   🌻🌻🌻
+	*/
+	color.Green("Your lucky number is %d!\n", utils.RandomNumber())
+
 	/*
-		Adding mux module to out module
+		Adding mux module to our module
 		command : go get -u github.com/gorilla/mux
-		Mux is a ackage gorilla/mux implements a request router and dispatcher for
+		Mux is a package gorilla/mux implements a request router and dispatcher for
 		matching incoming requests to their respective handler.
-		The name mux stands for "HTTP request multiplexer".
+		The name mux stands for "HTTP request multiplexer"
 
 		Even after adding mux we won't be able to see any other files imported to our module folder
 		just like node_modules. that's because files will be stored at GOPATH
 
-		Mux files can be found at /Users/webknottechnologies/go/pkg/mod/cache/download/github.com/gorilla
-
+		Mux files can be found at /Users/[USER_NAME]/go/pkg/mod/cache/download/github.com
 
 		go mod verify -> to verify the packages
 
