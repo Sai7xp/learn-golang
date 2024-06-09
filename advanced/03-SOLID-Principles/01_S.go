@@ -52,7 +52,10 @@ func main() {
 	rSchema.exportReportFile()
 
 	// Open Closed
-	openClosed()
+	OpenClosed()
+
+	// one more example for open closed
+	openClosedYetAnotherExample()
 
 	// Liskov
 	Liskov()

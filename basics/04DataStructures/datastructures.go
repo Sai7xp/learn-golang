@@ -83,6 +83,8 @@ func dataStructuresInGo() {
 
 	ticTacToeUsingSlices()
 
+	printAllSubStrings("Sumanth")
+
 	fmt.Println("→→→→→→→→→→→ END:BLOCK DATA STRUCTURES IN GO LANG ←←←←←←←←←")
 
 }
@@ -233,4 +235,16 @@ func ticTacToeUsingSlices() {
 	}
 	fmt.Printf("------> BLOCK:END Tic Tac Toe Board created using 2d arrays <-------\n\n")
 
+}
+
+func printAllSubStrings(name string) {
+	len := len(name)
+	for i := 0; i < len; i++ {
+		for end := i; end < len; end++ {
+			for loop := i; loop < end; loop++ {
+				fmt.Printf("%c", name[loop])
+			}
+			fmt.Println()
+		}
+	}
 }
