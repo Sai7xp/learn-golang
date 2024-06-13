@@ -27,10 +27,13 @@
 - [Creating a simple Web Server using Gorilla Mux](advanced/01-simple-web-server/web_server.go)
 - [Creating GET, POST, PUT, DELETE HTTP Methods - CRUD](advanced/02-go-mux-pro)
 
+### Context in Go
+- [Context Package](basics/12Context/)
+
 ### SOLID Principles
 
-- [**S**ingle Responsibility Principle](advanced/SOLID/01_S.go)
-- [**O**pen Closed Principle](advanced/SOLID/02_O.go)
-- [**L**iskov Substitution Principle](advanced/SOLID/03_L.go)
-- [**I**nterface Seggregation Principle](advanced/SOLID/04_I.go)
-- [**D**ependency Inversion Principle](advanced/SOLID/05_D.go)
+- [**S**ingle Responsibility Principle](advanced/03-SOLID-Principles/01_S.go)
+- [**O**pen Closed Principle](advanced/03-SOLID-Principles/02_O.go)
+- [**L**iskov Substitution Principle](advanced/03-SOLID-Principles/03_L.go)
+- [**I**nterface Seggregation Principle](advanced/03-SOLID-Principles/04_I.go)
+- [**D**ependency Inversion Principle](advanced/03-SOLID-Principles/05_D.go)
