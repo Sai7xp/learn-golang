@@ -18,6 +18,11 @@
 - [Functions, Anonymous Fns, Recursive Fns, Variadic Fns](basics/01Functions/functions.go)
 - [Closures in Go]()
 
+### Concurrency
+
+- [Sequential vs Concurrency Execution - Fibonacci](basics/10Concurrency/04ConcurrencyParallelism/con_vs_parallel.go)
+-
+
 ### Dealing with JSON
 
 - [Encoding & Decoding JSON](advanced/00-json/json.go)
@@ -28,6 +33,7 @@
 - [Creating GET, POST, PUT, DELETE HTTP Methods - CRUD](advanced/02-go-mux-pro)
 
 ### Context in Go
+
 - [Context Package](basics/12Context/)
 
 ### SOLID Principles
