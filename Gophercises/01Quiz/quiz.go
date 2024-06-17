@@ -2,11 +2,13 @@ package main
 
 import (
 	"bufio"
+	"context"
 	"encoding/csv"
 	"flag"
 	"fmt"
 	"os"
 	"strings"
+	"time"
 )
 
 type Question struct {
@@ -18,11 +20,17 @@ func main() {
 	fmt.Println("Gophercise - Quiz")
 
 	// read arguments
-	// go run . -csv=problems.csv
+	// go run . -csv=problems.csv -tl=25
 	questionFileName := flag.String("csv", "problems.csv", "a csv file for questions and answers")
-	timeLimit := flag.Int("limit", 25, "Specify the time limit in seconds")
-	fmt.Println("Quiz will end after", *timeLimit, "seconds")
+	timeLimit := flag.Int("tl", 30, "Specify the time limit in seconds")
 	flag.Parse()
+
+	waitForKeyPress()
+	fmt.Println("Quiz has Started and will end after", *timeLimit, "seconds")
+
+	ctx := context.Background()
+	ctx, cancel := context.WithTimeout(ctx, time.Second*time.Duration(*timeLimit))
+	defer cancel()
 
 	csvData, err := readCsv(*questionFileName)
 	if err != nil {
@@ -37,8 +45,12 @@ func main() {
 	/*
 		Start Quiz
 	*/
-	score := startQuiz(allQuestions)
-	fmt.Printf("You have answered %d out of %d questions correctly\n", score, totalQuestionsLength)
+	var score int
+	go startQuiz(cancel, allQuestions, &score)
+	select {
+	case <-ctx.Done():
+		fmt.Printf("\nYou have answered %d out of %d questions correctly\n", score, totalQuestionsLength)
+	}
 }
 
 // reads data from given csv file
@@ -69,7 +81,7 @@ func parseCsvLines(csvLines [][]string) []Question {
 	return questions
 }
 
-func startQuiz(records []Question) (score int) {
+func startQuiz(cancelFunc context.CancelFunc, records []Question, score *int) {
 	scanner := bufio.NewScanner(os.Stdin)
 
 	for i, eachQuestion := range records {
@@ -77,8 +89,14 @@ func startQuiz(records []Question) (score int) {
 		scanner.Scan()
 		userResponse := strings.TrimSpace(scanner.Text())
 		if userResponse == eachQuestion.answer {
-			score++
+			*score++
 		}
 	}
-	return score
+	cancelFunc()
+}
+
+func waitForKeyPress() {
+	fmt.Println("Press enter/return to start the Quizz")
+	var reader = bufio.NewReader(os.Stdin)
+	reader.ReadRune()
 }
