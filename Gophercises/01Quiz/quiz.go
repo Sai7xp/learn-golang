@@ -2,7 +2,6 @@ package main
 
 import (
 	"bufio"
-	"context"
 	"encoding/csv"
 	"flag"
 	"fmt"
@@ -19,20 +18,12 @@ type Question struct {
 func main() {
 	fmt.Println("Gophercise - Quiz")
 
-	// read arguments
 	// go run . -csv=problems.csv -tl=25
-	questionFileName := flag.String("csv", "problems.csv", "a csv file for questions and answers")
-	timeLimit := flag.Int("tl", 30, "Specify the time limit in seconds")
-	flag.Parse()
+	questionFileName, timeLimit := readFlags()
 
 	waitForKeyPress()
-	fmt.Println("Quiz has Started and will end after", *timeLimit, "seconds")
 
-	ctx := context.Background()
-	ctx, cancel := context.WithTimeout(ctx, time.Second*time.Duration(*timeLimit))
-	defer cancel()
-
-	csvData, err := readCsv(*questionFileName)
+	csvData, err := readCsv(questionFileName)
 	if err != nil {
 		fmt.Println(err.Error())
 		return
@@ -40,17 +31,30 @@ func main() {
 	allQuestions := parseCsvLines(csvData)
 	totalQuestionsLength := len(allQuestions)
 	fmt.Println("Total records/question length :", totalQuestionsLength)
-	// fmt.Printf("First Record %v and its type %T\n", records[0], records[0])
 
 	/*
-		Start Quiz
+		🏁 🏁 🏁 Start Quiz 🏁 🏁 🏁
 	*/
-	var score int
-	go startQuiz(cancel, allQuestions, &score)
-	select {
-	case <-ctx.Done():
-		fmt.Printf("\nYou have answered %d out of %d questions correctly\n", score, totalQuestionsLength)
+	fmt.Println("Quiz has Started and will end after", timeLimit, "seconds")
+	var totalScore int
+	scoreChan := make(chan int)
+	quizDoneStatusChan := make(chan interface{})
+	defer close(scoreChan)
+	defer close(quizDoneStatusChan)
+
+	done := false
+	go startQuiz(allQuestions, scoreChan, quizDoneStatusChan, timeLimit)
+
+	for !done {
+		select {
+		case score := <-scoreChan:
+			totalScore += score
+		case <-quizDoneStatusChan:
+			done = true
+		}
 	}
+	fmt.Printf("\nYou have answered %d out of %d questions correctly\n", totalScore, totalQuestionsLength)
+
 }
 
 // reads data from given csv file
@@ -81,22 +85,44 @@ func parseCsvLines(csvLines [][]string) []Question {
 	return questions
 }
 
-func startQuiz(cancelFunc context.CancelFunc, records []Question, score *int) {
+func startQuiz(records []Question, score chan int, quizDoneStatusChan chan interface{}, timeLimitInSeconds int) {
 	scanner := bufio.NewScanner(os.Stdin)
+	timer := time.NewTimer(time.Second * time.Duration(timeLimitInSeconds))
 
 	for i, eachQuestion := range records {
 		fmt.Printf("Problem %d: %s = ", i+1, eachQuestion.title)
-		scanner.Scan()
-		userResponse := strings.TrimSpace(scanner.Text())
-		if userResponse == eachQuestion.answer {
-			*score++
+		userResponseChan := make(chan string)
+		defer close(userResponseChan)
+		go func() {
+			scanner.Scan()
+			userResponse := strings.TrimSpace(scanner.Text())
+			userResponseChan <- userResponse
+		}()
+
+		select {
+		case <-timer.C:
+			fmt.Println("\nTime is Up!!!")
+			quizDoneStatusChan <- "Done"
+			return
+		case a := <-userResponseChan:
+			if a == eachQuestion.answer {
+				score <- 1
+			}
 		}
 	}
-	cancelFunc()
+	quizDoneStatusChan <- "Done"
 }
 
 func waitForKeyPress() {
-	fmt.Println("Press enter/return to start the Quizz")
+	fmt.Print("Press enter/return to start the Quizz")
 	var reader = bufio.NewReader(os.Stdin)
 	reader.ReadRune()
+}
+
+// returns filename and time limit parsed from command line args
+func readFlags() (string, int) {
+	questionFileName := flag.String("csv", "problems.csv", "a csv file for questions and answers")
+	timeLimit := flag.Int("tl", 30, "Specify the time limit in seconds")
+	flag.Parse()
+	return *questionFileName, *timeLimit
 }
