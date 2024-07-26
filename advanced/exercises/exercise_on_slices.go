@@ -17,6 +17,6 @@ func Pic(dx, dy int) [][]uint8 {
 	return res
 }
 
-func main() {
+func main2() {
 	pic.Show(Pic)
 }

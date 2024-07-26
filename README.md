@@ -38,8 +38,8 @@
 
 ### SOLID Principles
 
-- [**S**ingle Responsibility Principle](advanced/03-SOLID-Principles/01_S.go)
-- [**O**pen Closed Principle](advanced/03-SOLID-Principles/02_O.go)
-- [**L**iskov Substitution Principle](advanced/03-SOLID-Principles/03_L.go)
-- [**I**nterface Seggregation Principle](advanced/03-SOLID-Principles/04_I.go)
-- [**D**ependency Inversion Principle](advanced/03-SOLID-Principles/05_D.go)
+- [**S**ingle Responsibility Principle](SOLID-Principles)
+- [**O**pen Closed Principle](SOLID-Principles)
+- [**L**iskov Substitution Principle](SOLID-Principles)
+- [**I**nterface Seggregation Principle](SOLID-Principles)
+- [**D**ependency Inversion Principle](SOLID-Principles)
