@@ -55,7 +55,7 @@
 - [**D**ependency Inversion Principle](SOLID-Principles)
 
 [def]: basics/03Closures
-[def2]: basics/01Functions/functions.go
+[def2]: basics/01FunctionsAndFlowControl/functions.go
 [def3]: basics/00DataTypes/datatypes.go
 [def4]: basics/10Concurrency/04ConcurrencyParallelism/con_vs_parallel.go
 [def5]: advanced/00-json/json.go
