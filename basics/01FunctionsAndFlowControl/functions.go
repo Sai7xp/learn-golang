@@ -12,6 +12,9 @@ const (
 
 func main() {
 	functionsInGo()
+
+	// Loops -> classic for loop, for-in, using for loop as while loop, Range over integers
+	flowControlInGO()
 }
 
 // Function with one argument of type int
@@ -47,7 +50,11 @@ func divideBy5(dividend int) (r float64, q int) {
 	return
 }
 
-// https://gobyexample.com/variadic-functions
+/*
+https://gobyexample.com/variadic-functions
+
+Variadic Functions -> this fn can be called as sumOfN(2, 3, 4, 2, 1) 😎
+*/
 func sumOfN(values ...int) (total, count int) {
 	count = len(values)
 	for i := 0; i < count; i++ {
@@ -105,6 +112,7 @@ func functionsInGo() {
 	rem, quo := divideBy2(value)
 	fmt.Println("When ", value, " is Divided by 2 Remainder will be : ", rem, "& Quotient will be : ", quo)
 
+	// Calling Variadic Functions
 	sum, n := sumOfN(2, 6, 8, 9, 24)
 	fmt.Println("Sum of ", n, "numbers is ", sum)
 	fmt.Println("Sum of 2 Numbers 23 & 89 :  ", sumOfTwo(Input{A: 23, B: 89}))
