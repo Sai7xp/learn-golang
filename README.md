@@ -9,9 +9,12 @@
 
 ## Topics with Code Examples
 
-### Basic Types
+### Data Types
 
 - [Numbers, Strings, Boolean][def3]
+- [Arrays, Slices][def16]
+- [How Capacity increases on slice.append()][def16]
+- [Slices Deep vs Shallow Copy][def17]
 
 ### Functions, Closures, Flow Control(loops, if-else)
 
@@ -66,3 +69,5 @@
 [def13]: basics/08Pointers/pointers_with_struct.go
 [def14]: basics/08Pointers/pass_by_val_vs_ref.go
 [def15]: basics/01FunctionsAndFlowControl/flow_control.go
+[def16]: basics/04ArraysAndSlices/arrays_slices.go
+[def17]: basics/04ArraysAndSlices/slices_deep_copy_shallow_copy.go

@@ -74,6 +74,8 @@ func main() {
 	// calling a function from another package
 	fmt.Println("Sum of two numbers : ", utils.Add(totalPlanets, kotlin))
 
+	printAllSubStrings("Meow")
+
 }
 
 // DATA TYPES
@@ -137,4 +139,16 @@ func basicDataTypes() {
 
 	n := int64(123)
 	fmt.Println(strconv.FormatInt(n, 2)) // 1111011
+}
+
+func printAllSubStrings(name string) {
+	len := len(name)
+	for i := 0; i < len; i++ {
+		for end := i; end < len; end++ {
+			for loop := i; loop < end; loop++ {
+				fmt.Printf("%c", name[loop])
+			}
+			fmt.Println()
+		}
+	}
 }

@@ -15,7 +15,15 @@ import (
 )
 
 func main() {
-	dataStructuresInGo()
+
+	arraysInGo()
+
+	slicesInGo()
+
+	slicesDeepCopyShallowCopy()
+
+	readInputFromUserUsingBufio()
+
 }
 
 // read input from user
@@ -41,9 +49,8 @@ func readInputFromUserUsingBufio() {
 	fmt.Println("Your Fav Number is ", favNum)
 
 }
-func dataStructuresInGo() {
+func arraysInGo() {
 	fmt.Println("→→→→→→→→→→→ START:BLOCK DATA STRUCTURES IN GO LANG ←←←←←←←←←")
-	readInputFromUserUsingBufio()
 
 	// Arrays in Go
 	fmt.Println("ARRAYS in Go Lang")
@@ -76,12 +83,7 @@ func dataStructuresInGo() {
 	arr2D := [4][3]int{{1, 2}, {3, 4}, {5, 6, 7}}
 	fmt.Println("2Dimentional Array ", arr2D)
 
-	/// SLICES
-	slicesInGo()
-
 	ticTacToeUsingSlices()
-
-	printAllSubStrings("Sumanth")
 
 	fmt.Println("→→→→→→→→→→→ END:BLOCK DATA STRUCTURES IN GO LANG ←←←←←←←←←")
 
@@ -195,16 +197,4 @@ func ticTacToeUsingSlices() {
 	}
 	fmt.Printf("------> BLOCK:END Tic Tac Toe Board created using 2d arrays <-------\n\n")
 
-}
-
-func printAllSubStrings(name string) {
-	len := len(name)
-	for i := 0; i < len; i++ {
-		for end := i; end < len; end++ {
-			for loop := i; loop < end; loop++ {
-				fmt.Printf("%c", name[loop])
-			}
-			fmt.Println()
-		}
-	}
 }
