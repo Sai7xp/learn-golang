@@ -10,17 +10,56 @@ package main
 
 import "fmt"
 
+/*
+	------ WHAT IS PASS BY REFERENCE IN C++ -------
+
+	// 💡 'b' is a reference to the original variable
+	void modify(int &b) {
+    	b = 90; // This changes the original variable directly
+	}
+
+	int main() {
+    int a = 20;
+    modify(a); // 'a' is passed by reference
+    std::cout << a << std::endl; // 'a' is now changed to 90
+    return 0;
+	}
+
+
+	------ PASS BY REF & PASS BY POINTER -----
+
+	void modify(int &b) { b = 90; }
+
+	void modify(int *b) { *b = 90; }
+
+	What is the use of pass by reference in c++ if we can modify the value using pass by pointer
+	1. Pointers can be null but References cannot be null (eliminates null checks)
+	2. References can be more efficient because they avoid the overhead of pointer dereferencing
+
+*/
+
 func goHasOnlyPassByValueNoPassByRef() {
 	fmt.Println("---------- goHasOnlyPassByValueNoPassByRef() ------------")
 
 	count := 0
+	var intUsingPointer *int
 	fmt.Println("count value BEFORE passing to increment fn :", count)
 	fmt.Printf("count address : %v\n", &count) // 0x14000110018 (this is just the address format, value may not be same everytime)
 	increment(&count)
 	fmt.Println("count value AFTER passing to increment fn :", count) // 200
+
+	// 💀 this will cause nill pointer dereference error since intUsingPointer is not initialized
+	increment(intUsingPointer)
+	// to fix the above nil pointer issue assign value intUsingPointer = &count
 }
 
 func increment(a *int) {
+
+	// if a == nil {
+	// 	// handling nil pointer dereference issue
+	// 	return
+	// }
+
 	/*
 		💡 Go technically has only pass-by-value
 

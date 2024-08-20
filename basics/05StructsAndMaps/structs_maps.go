@@ -14,6 +14,9 @@ func structsAndMapsInGo() {
 	/// Maps
 	fmt.Println("\n→→→→→→→→→→→ START:BLOCK MAPS IN GO LANG ←←←←←←←←←")
 	mapsInGo()
+
+	mapsAreNotReferenceVariables()
+
 	fmt.Println("→→→→→→→→→→→ END:BLOCK MAPS IN GO LANG ←←←←←←←←←")
 
 	/// Custom Data Type struct in Go Lang

@@ -16,6 +16,11 @@
 - [How Capacity increases on slice.append()][def16]
 - [Slices Deep vs Shallow Copy][def17]
 
+### Maps & Structs
+
+- [Maps & Structs][def19]
+- [Maps are not Reference Variables][def18]
+
 ### Functions, Closures, Flow Control(loops, if-else)
 
 - [Functions, Anonymous Fns, Recursive Fns, Variadic Fns][def2]
@@ -65,9 +70,11 @@
 [def9]: https://gobyexample.com
 [def10]: https://quii.gitbook.io/learn-go-with-tests
 [def11]: https://go.dev/doc/effective_go
-[def12]: basics/08Pointers/pointers_with_struct.go
+[def12]: basics/08Pointers/pointers.go
 [def13]: basics/08Pointers/pointers_with_struct.go
 [def14]: basics/08Pointers/pass_by_val_vs_ref.go
 [def15]: basics/01FunctionsAndFlowControl/flow_control.go
 [def16]: basics/04ArraysAndSlices/arrays_slices.go
 [def17]: basics/04ArraysAndSlices/slices_deep_copy_shallow_copy.go
+[def18]: basics/05StructsAndMaps/maps_are_not_ref_variables.go
+[def19]: basics/05StructsAndMaps/structs_maps.go
