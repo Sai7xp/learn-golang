@@ -114,6 +114,16 @@ func structs() {
 	fmt.Printf("shortPerson: %v\n", shortPerson)
 	fmt.Printf("shortPerson2: %+v\n", shortPerson2)
 
+	/*
+		Creating the instance of a Person using `new` keyword
+
+		🌻 Use Case: useful if you plan to modify the struct's fields directly
+		or if you want to pass the struct around without copying it.
+		Pointers are efficient when you have large structs or need to
+		share data across multiple functions or goroutines.
+
+		Read more about new() & make() in Pointers section
+	*/
 	p := new(Person)
 	p.age = 56
 	fmt.Println(p.age, p.name)
