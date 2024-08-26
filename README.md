@@ -29,8 +29,9 @@
 
 ### Pointers
 
-- [Pointers, new() vs make()][def12]
-- [Does Go supports Pass By Ref ?][def14]
+- [Pointers Introduction][def12]
+- [🌻 new() vs make()][def20]
+- [🌻 Does Go supports Pass By Ref ?][def14]
 - [Using Pointers with Structs][def13]
 
 ### Concurrency
@@ -78,3 +79,4 @@
 [def17]: basics/04ArraysAndSlices/slices_deep_copy_shallow_copy.go
 [def18]: basics/05StructsAndMaps/maps_are_not_ref_variables.go
 [def19]: basics/05StructsAndMaps/structs_maps.go
+[def20]: basics/08Pointers/new_vs_make.go
