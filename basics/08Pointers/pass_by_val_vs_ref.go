@@ -48,8 +48,9 @@ func goHasOnlyPassByValueNoPassByRef() {
 	increment(&count)
 	fmt.Println("count value AFTER passing to increment fn :", count) // 200
 
+	fmt.Println("intUsingPointer: ", intUsingPointer)
 	// 💀 this will cause nill pointer dereference error since intUsingPointer is not initialized
-	increment(intUsingPointer)
+	// increment(intUsingPointer)
 	// to fix the above nil pointer issue assign value intUsingPointer = &count
 }
 

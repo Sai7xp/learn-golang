@@ -43,30 +43,43 @@ func main() {
 		incCounterReal(&counter) // passing the address of counter variable
 	}
 
-	/////////////////
+	/*
+		new()
+	*/
 	intUsingNew := new(int)
-	fmt.Println("intUsingNew ", intUsingNew)
-	// intUsingNew
+	fmt.Println("intUsingNew -> value will be address, since it's a pointer : ", intUsingNew, " and the data it points to:", *intUsingNew)
 
+	// 💡 just the type is integer pointer memory is not being allocated
 	var intUsingPointer *int
 	fmt.Printf("intUsingPointer: %v\n", intUsingPointer) // nil
 	// *intUsingPointer = 20 // 💀 dereferencing the nil pointer. horribly goes wrong
+
 	num := 20
 	intUsingPointer = &num
 	// Now it's safe to dereference intUsingPointer since it points to a valid memory address
 	fmt.Printf("intUsingPointer: %v\n", *intUsingPointer) // 20
 	*intUsingPointer = 20
-
-	/// Make can be used only for creating maps, slices and channels
+	/*
+		                    ------->  make()  <-------
+		🌻 Make can be used only for creating maps, slices and channels 🌻
+	*/
 	sliceUsingMake := make([]int, 10, 15)
 	fmt.Println(sliceUsingMake) // [0 0 0 0 0 0 0 0 0 0]
 
+	/*
+		Pointers inside struct
+	*/
 	pointersWithStruct()
 
 	/*
 		💎 Does go supports Pass By Reference ?
 	*/
 	goHasOnlyPassByValueNoPassByRef()
+
+	/*
+		new() vs make()
+	*/
+	newVsMake()
 }
 
 func incCounter(val int) {
