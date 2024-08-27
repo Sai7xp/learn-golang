@@ -33,7 +33,23 @@ func newVsMake() {
 		🌻 what does new() do?
 		Allocates the memory to a variable and returns pointer to that memory.
 		It does not initialize the memory beyond zeroing it, so the allocated memory is zero-valued.
-		new is used to allocate memory for any type, including custom types
+		new is used to allocate memory for any type, including custom types.
+
+		Zero-Valued
+		------------
+		Int   	-> 0
+		Float   -> 0.0
+		bool    -> false
+		String  -> ""
+
+		Pointer Type  -> *T for any type T: nil
+		Function Type -> nil
+		Slice         -> []T nil
+		Map 		  -> map[K][V] nil
+		Channel Type  -> nil
+		Interface     -> nll
+
+
 
 		p := new(T)  // T can be any type
 
@@ -42,7 +58,14 @@ func newVsMake() {
 	*/
 
 	p := new(int)
-	fmt.Println("p created using new(): ", p)
+	fmt.Println("p created using new(): ", p, "and the value after dereferencing: ", *p)
+
+	mapP := new(map[string]int) // map is initialized to zero-value of it. nil
+	fmt.Println(mapP == nil)    // false
+	fmt.Println(*mapP == nil)   // true
+	fmt.Println("mapP map created using new: ", mapP)
+	(*mapP)["hello"] = 90 // 🚨 this will throw an error
+	fmt.Println(mapP)
 
 	type Person struct {
 		Name string

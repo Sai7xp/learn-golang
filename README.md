@@ -30,7 +30,7 @@
 ### Pointers
 
 - [Pointers Introduction][def12]
-- [🌻 new() vs make()][def20]
+- [🌻 new() vs make() & Zero-Values of all types][def20]
 - [🌻 Does Go supports Pass By Ref ?][def14]
 - [Using Pointers with Structs][def13]
 
