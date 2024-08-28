@@ -76,4 +76,9 @@ func newVsMake() {
 	fmt.Printf("default person : %#v\n", per)
 
 	fmt.Println("---------------- new vs make ---------------")
+	// Key differences:
+	// 1. `new` returns a pointer, `make` returns a value
+	// 2. `new` can be used with any type, `make` is only for slices, maps, and channels
+	// 3. `new` only allocates memory, `make` initializes the data structure
+
 }

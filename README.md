@@ -2,10 +2,10 @@
 
 ## Go Resources & Books
 
-- [A Tour of GO][def8]
+- [A Tour of Go][def8]
 - [Go By Example][def9]
 - [Learn Go with Tests][def10]
-- [Effective GO][def11]
+- [🌻 Effective Go][def11]
 
 ## Topics with Code Examples
 
@@ -33,6 +33,10 @@
 - [🌻 new() vs make() & Zero-Values of all types][def20]
 - [🌻 Does Go supports Pass By Ref ?][def14]
 - [Using Pointers with Structs][def13]
+
+### Composition & Embedding
+
+- [Go doesn't support Inheritance. How can we achieve the similar functionality using the concepts of Composition & Embedding][def21]
 
 ### Concurrency
 
@@ -80,3 +84,4 @@
 [def18]: basics/05StructsAndMaps/maps_are_not_ref_variables.go
 [def19]: basics/05StructsAndMaps/structs_maps.go
 [def20]: basics/08Pointers/new_vs_make.go
+[def21]: basics/09Composition&Embedding/README.md
