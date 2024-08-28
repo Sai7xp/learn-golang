@@ -8,7 +8,7 @@ When you embed a struct in another struct, the inner struct's fields and methods
 
 ### When to Use Embedding
 
-[Code Examples](basics/09Composition&Embedding/embedding.go)
+[Code Examples](embedding.go)
 
 **Code Reusability:** When you want to reuse fields and methods from another struct without having to explicitly reference the inner struct.
 
@@ -20,7 +20,7 @@ Composition in Go refers to including one or more structs as fields of another s
 
 ### When to Use Composition
 
-[Code Examples](basics/09Composition&Embedding/composition.go)
+[Code Examples](composition.go)
 
 **Has-a Relationship:** When the outer struct "has" a certain struct as part of its definition. For instance, a Person has an Address.
 
