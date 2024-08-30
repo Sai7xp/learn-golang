@@ -9,6 +9,8 @@ func main() {
 	// Anonymous functions are useful when you want to define a
 	// function inline without having to name it.
 	closures()
+
+	scopeAndShadowing()
 }
 
 // outer function

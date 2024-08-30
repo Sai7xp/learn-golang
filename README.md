@@ -21,12 +21,16 @@
 - [Maps & Structs][def19]
 - [Maps are not Reference Variables][def18]
 
-### Functions, Closures, Flow Control(loops, if-else)
+### Functions, Flow Control(loops, if-else)
 
 - [Functions, Anonymous Fns, Recursive Fns][def2]
 - [Variadic Functions - Ever wondered how `fmt.Println` accepts any number of args without passing them as a list?][def22]
-- [Closures in Go][def]
 - [Classic for loop, for-in, for loop as while loop, Range over integers][def15]
+
+### Closures, Scope, Shadowing
+
+- [Closures in Go][def]
+- [Scope of Variables & Shadowing][def23]
 
 ### Pointers
 
@@ -87,3 +91,4 @@
 [def20]: basics/08Pointers/new_vs_make.go
 [def21]: basics/09Composition&Embedding/README.md
 [def22]: basics/01FunctionsAndFlowControl/variadic_functions.go
+[def23]: basics/03Closures/scope.go

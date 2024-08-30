@@ -28,6 +28,7 @@ func sumOfN(values ...int) (total, count int) {
 func RunVariadicFunctions() {
 	// Calling Variadic Functions
 	sum, n := sumOfN(2, 6, 8, 9, 24)
-	fmt.Println("Sum of ", n, "numbers is ", sum)
-	// even this Println is also a Variadic Function `fmt.Println(a ...any)``
+	fmt.Println("Sum of ", n, "numbers (calculated inside Variadic Fn) : ", sum)
+	// even this Println is also a Variadic Function `fmt.Println(a ...any)`
+	fmt.Println("Hello", 123, true)
 }

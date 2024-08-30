@@ -108,7 +108,6 @@ func functionsInGo() {
 	// Read input from User
 	fmt.Scan(&factorial)
 	fmt.Printf("Factorial of %v is : %v\n", factorial, factorialOfN(factorial))
-	fmt.Println("→→→→→→→→→→→ END:BLOCK FUNCTIONS IN GO LANG ←←←←←←←←←")
 
 	/// Anonymous functions
 	func() {
@@ -128,4 +127,5 @@ func functionsInGo() {
 		Variadic Functions
 	*/
 	RunVariadicFunctions()
+	fmt.Println("→→→→→→→→→→→ END:BLOCK FUNCTIONS IN GO LANG ←←←←←←←←←")
 }
