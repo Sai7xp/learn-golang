@@ -18,6 +18,7 @@
 
 - [Read Input using `fmt.Scan` & `fmt.Scanf`][def24]
 - [Read Input using `bufio`][def24]
+- [String Formatting - Different Format Specifiers][def24]
 
 ### Maps & Structs
 
