@@ -6,12 +6,8 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
 	"sort"
-	"strconv"
-	"time"
 )
 
 func main() {
@@ -22,33 +18,8 @@ func main() {
 
 	slicesDeepCopyShallowCopy()
 
-	readInputFromUserUsingBufio()
-
 }
 
-// read input from user
-func readInputFromUserUsingBufio() {
-	scaner := bufio.NewScanner(os.Stdin)
-	fmt.Print("Enter Your Name ")
-	scaner.Scan()
-	input := scaner.Text()
-	fmt.Println("Hi", input)
-	fmt.Print("Enter Year you were born ")
-	scaner.Scan()
-	yob, e := strconv.ParseInt(scaner.Text(), 10, 64)
-	if e == nil {
-		fmt.Println("Your age is", time.Now().Year()-int(yob))
-	} else {
-		fmt.Println(e)
-	}
-
-	favNum := 0
-	fmt.Print("Enter Your Fav Number ")
-	// fmt.Scan(&favNum) // reading input using Scan method
-	fmt.Scanf("%d", &favNum) // using scanf method
-	fmt.Println("Your Fav Number is ", favNum)
-
-}
 func arraysInGo() {
 	fmt.Println("→→→→→→→→→→→ START:BLOCK DATA STRUCTURES IN GO LANG ←←←←←←←←←")
 
