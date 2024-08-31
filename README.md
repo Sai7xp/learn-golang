@@ -7,14 +7,17 @@
 - [Learn Go with Tests][def10]
 - [🌻 Effective Go][def11]
 
-## Topics with Code Examples
-
 ### Data Types
 
 - [Numbers, Strings, Boolean][def3]
 - [Arrays, Slices][def16]
-- [How Capacity increases on slice.append()][def16]
+- [How Capacity of Slice increases on append()][def16]
 - [Slices Deep vs Shallow Copy][def17]
+
+### Read Input from user
+
+- [Read Input using `fmt.Scan` & `fmt.Scanf`][def24]
+- [Read Input using `bufio`][def24]
 
 ### Maps & Structs
 
@@ -92,3 +95,4 @@
 [def21]: basics/09Composition&Embedding/README.md
 [def22]: basics/01FunctionsAndFlowControl/variadic_functions.go
 [def23]: basics/03Closures/scope.go
+[def24]: basics/00DataTypes/read_input.go

@@ -14,15 +14,16 @@ import (
 
 🌻🌻🌻🌻🌻🌻🌻 */
 
-// variable declarations without initializers 🪹
 /*
-	0 for numeric types,
-	false for the boolean type, and
-	"" (the empty string) for strings.
+variable declarations without initializers 🪹
+
+0 for numeric types,
+false for the boolean type,
+"" (the empty string) for strings
 */
-var python string
-var c bool
 var java, kotlin int
+var c bool
+var python string
 
 // Variables with Initializers 🫄
 var dart, js float32 = 8.543, 9
@@ -49,7 +50,7 @@ func main() {
 	fmt.Println(typescript)
 	fmt.Println(totalPlanets)
 
-	// 😎 Short Variables :=
+	// 😎 Creating Variables using Short-Hand Notation :=
 	println("Short Variables in GO Lang")
 	{
 		// Block Level Scope
@@ -76,6 +77,7 @@ func main() {
 
 	printAllSubStrings("Meow")
 
+	differentWaysToReadInputFromUser()
 }
 
 // DATA TYPES
@@ -142,10 +144,11 @@ func basicDataTypes() {
 }
 
 func printAllSubStrings(name string) {
+	fmt.Println("All Substrings of", name)
 	len := len(name)
 	for i := 0; i < len; i++ {
 		for end := i; end < len; end++ {
-			for loop := i; loop < end; loop++ {
+			for loop := i; loop <= end; loop++ {
 				fmt.Printf("%c", name[loop])
 			}
 			fmt.Println()
