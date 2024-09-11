@@ -22,6 +22,7 @@ func main() {
 	fmt.Printf("j: %v and is j == 0 ? %v\n", j, (j == 0)) // true
 	j = 90
 
+	// A pointer is a value that points to the memory address of another variable.
 	p := &j // here p is a pointer (contains address)
 	fmt.Printf("p value: %v\n", p)
 	fmt.Printf("p pointing to value : %v\n", *p)
@@ -52,7 +53,7 @@ func main() {
 	// 💡 just the type is integer pointer memory is not being allocated
 	var intUsingPointer *int
 	fmt.Printf("intUsingPointer: %v\n", intUsingPointer) // nil
-	// *intUsingPointer = 20 // 💀 dereferencing the nil pointer. horribly goes wrong
+	// *intUsingPointer = 20 // 💀 we are dereferencing the nil pointer here. horribly goes wrong
 
 	num := 20
 	intUsingPointer = &num

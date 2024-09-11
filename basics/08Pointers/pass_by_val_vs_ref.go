@@ -11,7 +11,7 @@ package main
 import "fmt"
 
 /*
-	------ WHAT IS PASS BY REFERENCE IN C++ -------
+	-------- WHAT IS PASS BY REFERENCE IN C++ -------
 
 	// 💡 'b' is a reference to the original variable
 	void modify(int &b) {
@@ -76,3 +76,40 @@ func increment(a *int) {
 	a = &eg // 💡 has no impact on the caller because we overwrote the pointer value!
 
 }
+
+// C++ EXAMPLE
+
+/*
+
+#include <iostream>
+
+// https://www.programiz.com/online-compiler/7NwxJhJwiBe0F
+
+// PASS BY POINTER
+void modify(int *a)
+{
+    std::cout << a << std::endl;
+    int z = 999;
+    *a = 78;
+    a = &z;
+}
+
+// PASS BY REF
+void modifyPro(int &a)
+{
+    a = 56;
+}
+
+int main()
+{
+    // Write C++ code here
+    std::cout << "Try programiz.pro" << std::endl;
+    int a = 90;
+    std::cout << a << std::endl;
+    modifyPro(a);
+    std::cout << a << std::endl;
+
+    return 0;
+}
+
+*/
