@@ -37,14 +37,14 @@ func mapsInGo() {
 
 	mapUsingMake := make(map[string]bool)
 	fmt.Printf("Map of type %T created using make fn and value is : %v \n", mapUsingMake, mapUsingMake)
-	fmt.Println("is mapUsingMake value == nil ?  ", mapUsingMake == nil)
+	fmt.Println("is mapUsingMake value == nil ?  ", mapUsingMake == nil) // false, so we can put values into map
 
 	subjectMarks := map[string]float32{"Golang": 85, "Java": 80, "Python": 81}
 	fmt.Println(subjectMarks)
 	fmt.Println("Length of subjectMarks Map : ", len(subjectMarks))
 
 	marks := map[string]int{}
-	fmt.Println("is marks value == nil ? : ", marks == nil) // true
+	fmt.Println("is marks value == nil ? : ", marks == nil) // false, marks is not nil
 
 	marks["person1"] = 45
 	marks["person4"] = 45
