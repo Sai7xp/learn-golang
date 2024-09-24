@@ -9,6 +9,7 @@ package main
 							--->> Resources <<---
 1. https://www.udacity.com/blog/2021/05/c-pass-by-reference-explained.html
 2. https://stackoverflow.com/questions/47296325/passing-by-reference-and-value-in-go-to-functions
+3. https://dev.to/nikl/when-to-not-use-pointers-in-golang-kfi
 
 */
 

@@ -20,14 +20,14 @@ func newVsMake() {
 	mapp := make(map[string]int) // For maps
 	channel := make(chan int)    // For channels (unbuffered channel)
 
-	fmt.Println(slice)
-	fmt.Println(mapp)
-	fmt.Println(channel)
+	fmt.Println("slice created using make:", slice)
+	fmt.Println("map created using make:", mapp)
+	fmt.Println("channel created using make:", channel)
 
 	go func() {
 		channel <- 9
 	}()
-	fmt.Println(<-channel)
+	fmt.Println("Got value from channel:", <-channel)
 
 	/*
 		🌻 what does new() do?
@@ -56,15 +56,22 @@ func newVsMake() {
 		This is commonly used when working with user-defined types (e.g., structs),
 		when we want to create an instance but don’t want to initialize it with specific values.
 	*/
-
+	fmt.Printf("\n-------------- new() ---------------\n")
 	p := new(int)
 	fmt.Println("p created using new(): ", p, "and the value after dereferencing: ", *p)
 
 	mapP := new(map[string]int) // map is initialized to zero-value of it. nil
 	fmt.Println(mapP == nil)    // false
 	fmt.Println(*mapP == nil)   // true
-	fmt.Println("mapP map created using new: ", mapP)
-	(*mapP)["hello"] = 90 // 🚨 this will throw an error
+
+	fmt.Println("mapP map created using new: ", mapP) // &map[]
+	// 🚨 this will throw an error, assignment to entry in nil map
+	// (*mapP)["hello"] = 90
+	fmt.Println(mapP)
+
+	// so we have to initialize the map first
+	*mapP = make(map[string]int)
+	(*mapP)["hello"] = 90 // now we can safely add values
 	fmt.Println(mapP)
 
 	type Person struct {
@@ -73,7 +80,10 @@ func newVsMake() {
 	}
 
 	per := new(Person) // p is of type *Person, with Name = "" and Age = 0
-	fmt.Printf("default person : %#v\n", per)
+	fmt.Printf("Pointer person : %#v\n", per)
+
+	normalPerson := Person{}
+	fmt.Printf("Normal person : %#v\n", normalPerson)
 
 	fmt.Println("---------------- new vs make ---------------")
 	// Key differences:
