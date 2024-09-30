@@ -1,4 +1,4 @@
-## nil slice vs nil map
+## nil slice vs nil map: Why nil Slices accept new values, but nil Maps don't
 
 ```go
 var slice []int // nil slice
@@ -11,7 +11,7 @@ m["one"] = 1 // 🚨 Runtime panic: assignment to entry in nil map
 
 ### Appending to a Nil Slice:
 
-**Why is works:**
+**Why it works:**
 
 - Slices basically contains three fields
   1.  Pointer to underlying array
