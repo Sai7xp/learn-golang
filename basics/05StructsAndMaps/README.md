@@ -2,7 +2,7 @@
 
 ```go
 var slice []int // nil slice
-slice = append(slice, 1) // Works, as append allocates the underlying array
+slice = append(slice, 1) // append allocates new underlying array, so it works
 fmt.Println(slice) // [1]
 
 var m map[string]int // nil map
