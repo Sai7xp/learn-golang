@@ -18,7 +18,10 @@ fmt.Println("s1:", len(s1), cap(s1), s1) // s1: 3 3 [99 4 5]
 fmt.Println("s2:", len(s2), cap(s2), s2) // s2: 3 4 [2 99 4] 🤯
 ```
 
-> Capacity of a slice will be calculated from starting point of slice (index 2 for `s1`) to the end of the underlying array. So capacity will be 3 for s1. and 4 for s2 (starting from 1 till the end of the array)
+> The capacity of each slice is calculated from its starting point to the end of the underlying array.
+
+- s1 starts at index 2, so capacity is 3
+- s2 starts at index 1, so capacity is 4
 
 **Modifying `s1`**
 
@@ -29,7 +32,7 @@ fmt.Println("s2:", len(s2), cap(s2), s2) // s2: 3 4 [2 99 4] 🤯
 - Since both `s1` and `s2` pointing to the same underlying array, modifying s1 affects arr and s2 slice as well.
 - Slice is a view of an underlying array. When we create a slice from an array, data will not be copied. It will just create a reference to array. So modifying the array via slice will be visible to all other slices that share the same underlying array.
 
-## Then how can we create separate slices using `copy` func
+## Solution: Create independent slices using `copy` func
 
 ```go
 arr := [...]int{1, 2, 3, 4, 5}
