@@ -118,7 +118,7 @@ func slicesInGo() {
 
 	/// LENGTH and CAPACITY of SLICE
 	/*
-		When a slice grows via append, it takes time for the Go runtime to allocate new mem‐ory
+		When a slice grows via append, it takes time for the Go runtime to allocate new memory
 		and copy the existing data from the old memory to the new.
 		The old memory also needs to be garbage collected.
 

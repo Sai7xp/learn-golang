@@ -11,6 +11,7 @@
 
 - [Numbers, Strings, Boolean][def3]
 - [Arrays, Slices][def16]
+- [🌻 Isolating Go Slices: How to create separate slices from an array safely][def26]
 - [How Capacity of Slice increases on append()][def16]
 - [Slices Deep vs Shallow Copy][def17]
 
@@ -99,3 +100,4 @@
 [def23]: basics/03Closures/scope.go
 [def24]: basics/00DataTypes/read_input.go
 [def25]: basics/05StructsAndMaps/README.md
+[def26]: basics/04ArraysAndSlices/README.md
