@@ -13,7 +13,7 @@ m["one"] = 1 // 🚨 Runtime panic: assignment to entry in nil map
 
 **Why it works:**
 
-- Slices basically contains three fields
+- Slice consists of 3 components
   1.  Pointer to underlying array
   2.  Length of Slice
   3.  Capacity of Slice
