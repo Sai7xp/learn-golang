@@ -75,6 +75,10 @@
 - [**I**nterface Seggregation Principle](SOLID-Principles)
 - [**D**ependency Inversion Principle](SOLID-Principles)
 
+### Others
+
+- [Date & Time Formats][def27]
+
 [def]: basics/03Closures
 [def2]: basics/01FunctionsAndFlowControl/functions.go
 [def3]: basics/00DataTypes/datatypes.go
@@ -101,3 +105,4 @@
 [def24]: basics/00DataTypes/read_input.go
 [def25]: basics/05StructsAndMaps/README.md
 [def26]: basics/04ArraysAndSlices/README.md
+[def27]: advanced/04-time/main.go
