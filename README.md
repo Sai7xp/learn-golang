@@ -78,6 +78,7 @@
 ### Others
 
 - [Date & Time Formats][def27]
+- [Simple Slot Machine cli app to understand Loops, Random Numbers, Reading input from user, 2D arrays][def28]
 
 [def]: basics/03Closures
 [def2]: basics/01FunctionsAndFlowControl/functions.go
@@ -106,3 +107,4 @@
 [def25]: basics/05StructsAndMaps/README.md
 [def26]: basics/04ArraysAndSlices/README.md
 [def27]: advanced/04-time/main.go
+[def28]: advanced/09-simple-slot-machine
