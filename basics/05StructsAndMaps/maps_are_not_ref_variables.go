@@ -49,7 +49,7 @@ func mapModificationReflectionTest(m map[int]string) {
 func fn(n map[int]int) {
 	fmt.Printf("&n in fn - %p\n", &n)
 	fmt.Printf(" n in fn - %p\n", n)
-	// if map is reference variable then the below assignment will have effect on passed argument
+	// 🌻 if map is reference variable then the below assignment will have effect on passed argument
 	n = make(map[int]int)
 }
 

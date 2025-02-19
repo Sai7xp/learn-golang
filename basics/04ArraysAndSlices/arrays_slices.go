@@ -25,7 +25,12 @@ func arraysInGo() {
 
 	// Arrays in Go
 	fmt.Println("ARRAYS in Go Lang")
-	var justInitArr [3]int
+	var justInitArr [3]int // [0,0,0] - array size should be a constant i.e., it should be known at compile time
+	/*
+		func fn(int k){
+			array := [k]int ❌ this is not allowed in golang, use slice instead for dynamic array allocation
+		}
+	*/
 	var initAndDeclare = [3]int{1, 3, 4}
 	fmt.Println("Just Initialized Array ", justInitArr)
 	fmt.Println("Initialized & Declared Array ", initAndDeclare)
