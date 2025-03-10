@@ -24,6 +24,7 @@
 ### Maps & Structs
 
 - [Maps & Structs][def19]
+- [Receiver Functions(Promotes Encapsulation) - Methods on Struct or any other specific Type][def29]
 - [Maps are not Reference Variables][def18]
 - [Why `nil` Slices accept new values, but `nil` Maps don't][def25]
 
@@ -108,3 +109,4 @@
 [def26]: basics/04ArraysAndSlices/README.md
 [def27]: advanced/04-time/main.go
 [def28]: advanced/09-simple-slot-machine
+[def29]: basics/05StructsAndMaps/receiver_functions.go

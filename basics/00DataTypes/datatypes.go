@@ -7,7 +7,7 @@ import (
 )
 
 /* 🌻🌻🌻🌻🌻🌻🌻
-1. Basic type: Numbers, Strings, and Booleans
+1. Basic type: Numbers, Strings, and Boolean
 2. Aggregate type: Array and Structs(Composite Type)
 3. Reference type: Pointers, slices, maps, functions, and channels
 4. Interface type
@@ -117,8 +117,10 @@ var (
 
 func basicDataTypes() {
 	// Non-ASCII literal. Go source is UTF-8.
-	g := 'Σ' // rune type, an alias for int32, holds a unicode code point.
+	g := 'Σ' // rune type, an alias for int32, holds a unicode code point
+	moreOnRunes()
 	fmt.Printf("Type : %T and value : %v", g, g)
+
 	var eightBitInt int8 = -128
 	fmt.Println(eightBitInt)
 	xx, yy, zz := 0, 5, 6
@@ -141,6 +143,27 @@ func basicDataTypes() {
 
 	n := int64(123)
 	fmt.Println(strconv.FormatInt(n, 2)) // 1111011
+}
+
+func moreOnRunes() {
+	var name = "नमस्ते"
+
+	runeee := "न"
+	fmt.Println(len(runeee))
+	/*
+		-> len(name) returns the number of bytes in name
+		-> each character may take more than a byte
+		-> so use for-range loop to loop through a string
+	*/
+	fmt.Println("len of name: ", len(name))
+
+	for i, val := range name {
+		fmt.Printf("i : %v byte : %c and rune: %c\n", i, name[i], val)
+	}
+
+	for i := 0; i < len(name); i++ {
+		fmt.Printf("i : %v and char : %c\n", i, name[i])
+	}
 }
 
 func printAllSubStrings(name string) {

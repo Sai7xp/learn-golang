@@ -21,6 +21,11 @@ func structsAndMapsInGo() {
 
 	/// Custom Data Type struct in Go Lang
 	structs()
+
+	/*
+		Receiver Functions
+	*/
+	receiverFunctions()
 }
 
 /*
@@ -125,6 +130,7 @@ func structs() {
 		Read more about new() & make() in Pointers section
 	*/
 	p := new(Person)
+	// p := &Person{age: 56} same as above, p hold a pointer to Person
 	p.age = 56
 	fmt.Println(p.age, p.name)
 
