@@ -5,5 +5,9 @@ import "fmt"
 func main() {
 	fmt.Println("Concurrency Patterns in Go")
 
-	FanOutExample()
+	// Fan Out
+	FanOutImplementation()
+
+	// Fan In
+	FanInImplementation()
 }
