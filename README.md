@@ -53,7 +53,7 @@
 ### Concurrency
 
 - [Sequential vs Concurrency Execution - Fibonacci][def4]
--
+- [🌻 Concurrency Patterns - FanIn, FanOut][def30]
 
 ### Dealing with JSON
 
@@ -110,3 +110,4 @@
 [def27]: advanced/04-time/main.go
 [def28]: advanced/09-simple-slot-machine
 [def29]: basics/05StructsAndMaps/receiver_functions.go
+[def30]: basics/10Concurrency/05ConcurrencyPatterns
