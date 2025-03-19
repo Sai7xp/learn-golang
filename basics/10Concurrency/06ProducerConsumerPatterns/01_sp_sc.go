@@ -6,7 +6,7 @@ import (
 )
 
 func SingleProducerSingleConsumer() {
-	fmt.Println("Single Producer & Single Consumer")
+	fmt.Println("SP SC - Single Producer & Single Consumer")
 	pipe := make(chan string)
 
 	/*
@@ -17,26 +17,29 @@ func SingleProducerSingleConsumer() {
 		✋ BUT BUT, the problem is the last message will be missed,
 		producer will add last message to channel and then immediately func exits, before even consumer prints the msg to console
 	*/
+
+	go producer1(pipe)
+
 	var wg sync.WaitGroup
-
-	wg.Add(1) // once producer completes producing all the message it should do wg.Done
-	go producer1(pipe, &wg)
-
-	go consumer1(pipe)
+	wg.Add(1) // once consumer completes consuming all the messages it should do wg.Done()
+	go consumer1(pipe, &wg)
 
 	wg.Wait()
-	close(pipe)
 }
 
-func producer1(ch chan<- string, wg *sync.WaitGroup) {
+func producer1(ch chan<- string) {
 	for i := 0; i < 10; i++ {
-		ch <- fmt.Sprintf("Message from Producer %d", i+1)
+		ch <- fmt.Sprintf("Message %d from Single Producer", i+1)
 	}
-	wg.Done()
+	close(ch)
 }
 
-func consumer1(ch <-chan string) {
+func consumer1(ch <-chan string, wg *sync.WaitGroup) {
+	defer wg.Done()
+
+	// below for loop will break when the ch is closed and all the data is read from it
 	for eachMsg := range ch {
+		// time.Sleep(time.Second)
 		fmt.Println(eachMsg)
 	}
 }
