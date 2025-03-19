@@ -25,8 +25,8 @@ func FanOutImplementation() {
 	jobsCount := 10
 	workersCount := 3
 
-	jobsChannel := make(chan int, jobsCount)
-	results := make(chan string) // observer we have used unbuffered channel here
+	jobsChannel := make(chan int, jobsCount) // jobs channel is buffered because even though all the workers are busy we should be able to add jobs to the queue
+	results := make(chan string)             // observe we have used unbuffered channel here
 
 	// spin up the limited workers
 	var wg sync.WaitGroup
@@ -42,6 +42,11 @@ func FanOutImplementation() {
 	for job := 1; job <= jobsCount; job++ {
 		jobsChannel <- job
 	}
+
+	// close the buffered jobsChannel
+	// observe we are closing this channel as soon as we added all the jobs to channel,
+	// but still workers can read data from this channel even it is closed,
+	// It just that we can send any more data once the channel is closed
 	close(jobsChannel)
 
 	// This will cause a dead lock since results channel is a unbuffered channel and we are listening to results
@@ -60,6 +65,11 @@ func FanOutImplementation() {
 	for eachResult := range results {
 		fmt.Println("Result : ", eachResult)
 	}
+	/*
+	 When will for range loops used on channel end ?
+	 1. When the channel is closed using close()
+	 2. All buffered values have been read after closing.
+	*/
 }
 
 // jobsChan <-chan int means receive only channel, worker can't send data to jobs channel

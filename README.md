@@ -54,6 +54,7 @@
 
 - [Sequential vs Concurrency Execution - Fibonacci][def4]
 - [🌻 Concurrency Patterns - FanIn, FanOut][def30]
+- [🌻 Producers, Consumers Pattern(Imp for interviews)][def31]
 
 ### Dealing with JSON
 
@@ -111,3 +112,4 @@
 [def28]: advanced/09-simple-slot-machine
 [def29]: basics/05StructsAndMaps/receiver_functions.go
 [def30]: basics/10Concurrency/05ConcurrencyPatterns
+[def31]: basics/10Concurrency/06ProducerConsumerPatterns
