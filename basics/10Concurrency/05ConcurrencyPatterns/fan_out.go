@@ -21,16 +21,7 @@ This approach is more efficient than creating n goroutines for n jobs because:
 2. Scalability
   - we can adjust the number of workers based on the available resources (e.g., CPU cores)
 */
-
-// jobsChan <-chan int means receive only channel, worker can't send data to jobs channel
-func worker(id string, jobsChan <-chan int, results chan<- string) {
-	for job := range jobsChan {
-		fmt.Printf("worker %s received %d job\n", id, job)
-		time.Sleep(time.Second * 2)
-		results <- fmt.Sprintf("worker %s finished job %d", id, job)
-	}
-}
-func FanOutExample() {
+func FanOutImplementation() {
 	jobsCount := 10
 	workersCount := 3
 
@@ -68,5 +59,14 @@ func FanOutExample() {
 
 	for eachResult := range results {
 		fmt.Println("Result : ", eachResult)
+	}
+}
+
+// jobsChan <-chan int means receive only channel, worker can't send data to jobs channel
+func worker(id string, jobsChan <-chan int, results chan<- string) {
+	for job := range jobsChan {
+		fmt.Printf("worker %s received %d job\n", id, job)
+		time.Sleep(time.Second * 2)
+		results <- fmt.Sprintf("worker %s finished job %d", id, job)
 	}
 }
