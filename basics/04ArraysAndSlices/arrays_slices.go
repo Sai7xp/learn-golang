@@ -149,6 +149,19 @@ func slicesInGo() {
 	s = append(s, []int{91, 92, 93, 94}...)
 	printSlice(s) // len=6 cap=8 [5 7 91 92 93 94] 🌻 Capacity increased from 4 to 8(doubled)
 	fmt.Println("------------ END: SLICES IN GO LANG ------------")
+
+	testSlice := []string{"one"}
+	fmt.Println("slice where it's created: ", testSlice)
+
+	updateSlice(testSlice)
+	fmt.Println("slice after updated where it's created ", testSlice)
+}
+
+func updateSlice(arg []string) {
+	arg[0] = "modified"            // only this will have effect on passed argument variable
+	arg = append(arg, "new value") // 🌻 no effect on passed arg
+	fmt.Println("inside update slice: ", arg)
+
 }
 
 func printSlice(s []int) {
