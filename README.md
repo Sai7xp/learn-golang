@@ -62,12 +62,13 @@
 
 ### Web Server in Go
 
-- [Creating a simple Web Server using Gorilla Mux][def6]
+- [🌻 Creating a simple HTTP Web Server][def6]
 - [Creating GET, POST, PUT, DELETE HTTP Methods - CRUD][def7]
 
 ### Context in Go
 
-- [Context Package](basics/12Context/)
+- [Context Package - Managing deadlines, Cancellations, Setting Timeouts][def32]
+- [🌻 Stop doing expensive computations when http client is disconnected in between][def33]
 
 ### SOLID Principles
 
@@ -113,3 +114,5 @@
 [def29]: basics/05StructsAndMaps/receiver_functions.go
 [def30]: basics/10Concurrency/05ConcurrencyPatterns
 [def31]: basics/10Concurrency/06ProducerConsumerPatterns
+[def32]: basics/12Context/
+[def33]: basics/12Context/context_http_usecase.go

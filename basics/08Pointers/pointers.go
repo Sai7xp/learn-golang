@@ -11,6 +11,12 @@ package main
 2. https://stackoverflow.com/questions/47296325/passing-by-reference-and-value-in-go-to-functions
 3. https://dev.to/nikl/when-to-not-use-pointers-in-golang-kfi
 
+
+
+https://youtu.be/UoQu9li3xK0?si=Oal-gPY8XKco6oJT
+https://youtu.be/2XEQsJLsLN0?si=N_hkzB_NgmlRKJGF
+
+
 */
 
 import "fmt"
@@ -28,7 +34,7 @@ func main() {
 	fmt.Printf("p value: %v\n", p)
 	fmt.Printf("p pointing to value : %v\n", *p)
 	*p = 99
-	fmt.Printf("j value: %v\n", j) // 99 j value got changed
+	fmt.Printf("j value: %v\n", j) // 99. j value got changed
 
 	counter := 0
 	// 6 secs timer
@@ -55,7 +61,6 @@ func main() {
 	var intUsingPointer *int
 	fmt.Printf("intUsingPointer: %v\n", intUsingPointer) // nil
 	// *intUsingPointer = 20 // 💀 we are dereferencing the nil pointer here. horribly goes wrong
-
 	num := 20
 	intUsingPointer = &num
 	// Now it's safe to dereference intUsingPointer since it points to a valid memory address

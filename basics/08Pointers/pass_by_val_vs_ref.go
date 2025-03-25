@@ -67,8 +67,8 @@ func increment(a *int) {
 		'a' is complete different value from the passed argument(basically a copy got created)
 		so in GoLang Pointers are not pass by ref unlike c++
 	*/
-	fmt.Printf("a value : %v\n", a)   // 0x14000110018 (a holds the address that is passed in arg)
-	fmt.Printf("&a value : %v\n", &a) // 0x14000116020 (address of a itself is different)
+	fmt.Printf("a value : %v\n", a)   // 0x14000110018 ('a' holds the address that is passed in arg)
+	fmt.Printf("&a value : %v\n", &a) // 0x14000116020 (address of 'a' itself is different)
 	fmt.Printf("*a value : %v\n", *a) // 0
 	*a = 199                          // modifies the arg value as well
 	*a++
