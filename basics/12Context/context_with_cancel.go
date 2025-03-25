@@ -12,7 +12,7 @@ func contextWithCancel() {
 		fmt.Println("calling cancel fn() in 2 secs")
 		time.Sleep(2 * time.Second)
 		fmt.Println("context cancel fn called")
-		cancelFunc()
+		cancelFunc() // we can cal this cancel whenever we want
 	}()
 
 	data, err := longRunning(ctx)

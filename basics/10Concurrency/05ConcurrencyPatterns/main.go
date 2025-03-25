@@ -1,13 +1,18 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
 	fmt.Println("Concurrency Patterns in Go")
 
-	// Fan Out
+	// Fan Out Pattern
 	FanOutImplementation()
 
-	// Fan In
+	// Fan In Pattern
 	FanInImplementation()
+
+	// Fan out simple example
+	FanOutEaxmple2()
 }

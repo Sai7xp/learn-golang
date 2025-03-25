@@ -50,11 +50,12 @@
 
 - [Go doesn't support Inheritance. How can we achieve the similar functionality using the concepts of Composition & Embedding][def21]
 
-### Concurrency
+### 🌻🌻 Concurrency
 
 - [Sequential vs Concurrency Execution - Fibonacci][def4]
-- [🌻 Concurrency Patterns - FanIn, FanOut][def30]
-- [🌻 Producers, Consumers Pattern(Imp for interviews)][def31]
+- [Channels - Buffered, UnBuffered, Select Statement, Creating Stream using Channels][def34]
+- [Concurrency Patterns - FanIn(Multiplexing), FanOut(DeMultiplexing)][def30]
+- [Producers, Consumers Pattern(Imp for interviews)][def31]
 
 ### Dealing with JSON
 
@@ -116,3 +117,4 @@
 [def31]: basics/10Concurrency/06ProducerConsumerPatterns
 [def32]: basics/12Context/
 [def33]: basics/12Context/context_http_usecase.go
+[def34]: basics/10Concurrency/02channels

@@ -2,81 +2,83 @@ package main
 
 import (
 	"fmt"
-	"strconv"
-	"sync"
 	"time"
 )
 
+// Demultiplex a stream of data into multiple concurrent streams
+// https://ornlu-is.github.io/go_fan_out_pattern/
+
 /*
-Use Fan Out pattern when a single producer want to distribute multiple jobs among n Goroutines
-and process them concurrently. This pattern is useful when you have large number of tasks that can
-be processed independently.
+Fan Out is a concurrency pattern where a single stream of data is distributed to multiple Goroutines
+for processing them concurrently. This pattern is useful when you have large number of tasks that can
+be processed independently. Goroutines are powerful and make your program run faster.
+But with great power comes great... potential for an OOM (Out Of Memory) crash.
 
-We create a fixed number of workers and then the workload will be shared among them.
+We create a fixed number of workers and then the workload will be shared among them. This approach is
+more efficient than creating n goroutines for n jobs because:
 
-This approach is more efficient than creating n goroutines for n jobs because:
-1. Better Resource Management
-  - Creating a goroutine for each job can lead to excessive resource usage(memory, CPU)
+ 1. Better Resource Management
+    Creating a goroutine for each job can lead to excessive resource usage(memory, CPU)
 
-2. Scalability
-  - we can adjust the number of workers based on the available resources (e.g., CPU cores)
+ 2. Scalability
+    We can adjust the number of workers based on the available resources (e.g., CPU cores)
 */
 func FanOutImplementation() {
-	jobsCount := 10
-	workersCount := 3
-
-	jobsChannel := make(chan int, jobsCount) // jobs channel is buffered because even though all the workers are busy we should be able to add jobs to the queue
-	results := make(chan string)             // observe we have used unbuffered channel here
-
-	// spin up the limited workers
-	var wg sync.WaitGroup
-	for i := 0; i < workersCount; i++ {
-		wg.Add(1)
-		go func(workerId string) {
-			defer wg.Done()
-			worker(workerId, jobsChannel, results)
-		}(strconv.Itoa(i + 1))
-	}
-
-	// distribute the jobs
-	for job := 1; job <= jobsCount; job++ {
-		jobsChannel <- job
-	}
-
-	// close the buffered jobsChannel
-	// observe we are closing this channel as soon as we added all the jobs to channel,
-	// but still workers can read data from this channel even it is closed,
-	// It just that we can send any more data once the channel is closed
-	close(jobsChannel)
-
-	// This will cause a dead lock since results channel is a unbuffered channel and we are listening to results
-	// at the end after all jobs are completed. So solve this problem use one more goroutine and put either
-	// the below code in that or else put read listens login in goroutine
-	// wg.Wait()
-	// close(results)
-
-	go func() {
-		// waits till all the jobs are executed and then closes the results channel
-		wg.Wait()
-		close(results)
-		fmt.Println("YAY! FINISHED EXECUTING ALL THE JOBS")
+	fmt.Println("-------- Fan Out Concurrency Pattern Demonstration ----------")
+	timeNow := time.Now()
+	defer func() {
+		fmt.Println("Finished in : ", time.Since(timeNow))
 	}()
 
-	for eachResult := range results {
-		fmt.Println("Result : ", eachResult)
+	nums := []int{1, 2, 3, 4, 5, 6, 7, 8, 9}
+	numsStream := createStream(nums) // original input stream
+
+	output1 := demultiplexer("worker1", numsStream)
+	output2 := demultiplexer("worker2", numsStream)
+
+InfiniteLoop:
+	// Infinite Loop - listen to workers, where each worker finishes it's job, set them to nil and when all the workers are nil, exit the loop
+	for {
+		if output1 == nil && output2 == nil {
+			break InfiniteLoop
+		}
+		select {
+		case _, ok := <-output1:
+			if !ok {
+				output1 = nil
+			}
+
+		case _, ok := <-output2:
+			if !ok {
+				output2 = nil
+			}
+		}
 	}
-	/*
-	 When will for range loops used on channel end ?
-	 1. When the channel is closed using close()
-	 2. All buffered values have been read after closing.
-	*/
 }
 
-// jobsChan <-chan int means receive only channel, worker can't send data to jobs channel
-func worker(id string, jobsChan <-chan int, results chan<- string) {
-	for job := range jobsChan {
-		fmt.Printf("worker %s received %d job\n", id, job)
-		time.Sleep(time.Second * 2)
-		results <- fmt.Sprintf("worker %s finished job %d", id, job)
-	}
+func createStream(nums []int) <-chan int {
+	stream := make(chan int) // create a stream and return it, then later below goroutine will add data into the stream
+
+	go func() {
+		for _, num := range nums {
+			stream <- num
+		}
+		close(stream)
+	}()
+
+	return stream
+}
+
+func demultiplexer(workerName string, inputStream <-chan int) <-chan int {
+	stopSignal := make(chan int)
+
+	go func() {
+		defer close(stopSignal)
+		for data := range inputStream {
+			time.Sleep(time.Second * 1)
+			fmt.Println("Result from ", workerName, ": ", data*data)
+		}
+	}()
+
+	return stopSignal
 }
