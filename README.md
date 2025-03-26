@@ -89,7 +89,7 @@
 [def3]: basics/00DataTypes/datatypes.go
 [def4]: basics/10Concurrency/04ConcurrencyParallelism/con_vs_parallel.go
 [def5]: advanced/00-json/json.go
-[def6]: advanced/01-simple-web-server/web_server.go
+[def6]: advanced/01-simple-web-server
 [def7]: advanced/02-go-mux-pro
 [def8]: https://go.dev/tour/welcome/1
 [def9]: https://gobyexample.com

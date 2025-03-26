@@ -6,6 +6,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"os"
 	"strings"
 	"time"
 )
@@ -14,7 +15,7 @@ const (
 	PORT = ":5003"
 )
 
-type Data struct {
+type NewYearMessage struct {
 	Message string `json:"message"`
 	Year    int    `json:"currentYear"`
 }
@@ -30,31 +31,70 @@ Host: localhost
 Send the above message as raw text, server will respond back
 */
 func getHandler(w http.ResponseWriter, req *http.Request) {
-	log.Println("Req from : ", req.RemoteAddr)
+	log.Println("Req received from : ", req.RemoteAddr)
 	w.Write([]byte("bar"))
 }
 
 // Handler function for the POST request
-func postRoute(w http.ResponseWriter, r *http.Request) {
+func sendMessageHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "POST" {
+		http.Error(w, "Only POST method is allowed", http.StatusBadRequest)
+		return
+	}
+	defer r.Body.Close()
+
 	// Decode JSON data from request body
-	var data Data
-	if err := json.NewDecoder(r.Body).Decode(&data); err != nil {
+	var msg NewYearMessage
+	if err := json.NewDecoder(r.Body).Decode(&msg); err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
 
-	log.Println("Received:", data)
+	log.Println("Received :", msg)
 
-	// Encode JSON data and send it back in the response
+	// send JSON encoding of NewYearMessage{} in response
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(data)
+	json.NewEncoder(w).Encode(msg)
+
+	// observe the difference between Encode() vs w.Write()
+	helloBytes := []byte(`hello`)
+	json.NewEncoder(w).Encode(helloBytes) // Json Encode will encode []byte into base64 format
+	w.Write(helloBytes)
+
+}
+
+func getMusicHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "GET" {
+		http.Error(w, "only GET method is allowed", http.StatusBadRequest)
+		return
+	}
+
+	// we can send image/png as well
+	w.Header().Set("Content-Type", "audio/mpeg")
+
+	file, err := os.Open("Arunachala.mp3")
+	if err != nil {
+		http.Error(w, "File not found", http.StatusNotFound)
+		return
+	}
+	defer file.Close()
+
+	// way 1
+	http.ServeFile(w, r, "Arunachala.mp3")
+
+	// way 2 of sending music file
+	// _, err = io.Copy(w, file)
+	// if err != nil {
+	// 	http.Error(w, "Failed to stream audio", http.StatusInternalServerError)
+	// }
 }
 
 func main() {
 
 	// register the handlers
-	http.HandleFunc("/testPost", postRoute)
-	http.HandleFunc("/foo", getHandler)
+	http.HandleFunc("/foo", getHandler)                 // GET
+	http.HandleFunc("/sendMessage", sendMessageHandler) // POST
+	http.HandleFunc("/music", getMusicHandler)          // GET
 
 	go func() {
 		time.Sleep(time.Second) // wait for a sec until http server starts listening on given PORT
@@ -67,15 +107,15 @@ func main() {
 	}
 }
 
-// let's test the above post api /testPost
+// let's test the above post api /sendMessage
 func makePostRequest() {
 	fmt.Println("----> Making a POST request in Go <-------")
-	var url = fmt.Sprintf("http://localhost%s/testPost", PORT)
+	var url = fmt.Sprintf("http://localhost%s/sendMessage", PORT)
 
 	// dummy json payload
 	reqBody := strings.NewReader(`
 	{
-		"currentYear" : 2024,
+		"currentYear" : 2025,
 		"message": "Go is Awesome!😎"
 	}
 	`)
