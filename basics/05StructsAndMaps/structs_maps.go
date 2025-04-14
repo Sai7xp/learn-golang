@@ -23,7 +23,7 @@ func structsAndMapsInGo() {
 	structs()
 
 	/*
-		Receiver Functions
+		Receiver Functions(promotes Encapsulation) & Method Chaining
 	*/
 	receiverFunctions()
 }

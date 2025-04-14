@@ -13,6 +13,6 @@ func main() {
 	// Fan In Pattern
 	FanInImplementation()
 
-	// Fan out simple example
-	FanOutEaxmple2()
+	// Worker Pool
+	WorkerPoolExample()
 }

@@ -7,7 +7,8 @@ import (
 	"time"
 )
 
-func FanOutEaxmple2() {
+// Worker Pool Example
+func WorkerPoolExample() {
 	jobsCount := 10
 	workersCount := 3
 

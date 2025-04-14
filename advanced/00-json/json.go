@@ -31,7 +31,7 @@ func main() {
 
 	fmt.Println("-----> Dealing with Json in GO Lang <----- ")
 
-	// EncodeJson()
+	EncodeJson()
 
 	DecodeJson()
 
@@ -55,6 +55,19 @@ func EncodeJson() {
 	} else {
 		fmt.Printf("Json Encoded Data : \n%s\n", jsonEncodedCourses)
 	}
+
+	/*
+		⚠️ Avoid marshalling runes
+		rune is basically a number, a unicode point
+	*/
+	dataToEncode := []interface{}{"1", '1'}
+
+	for _, eachData := range dataToEncode {
+		if bytes, err := json.Marshal(eachData); err == nil {
+			fmt.Println("bytes: ", bytes)
+			fmt.Println("string(bytes): ", string(bytes))
+		}
+	}
 }
 
 // decodes json
@@ -77,7 +90,6 @@ func DecodeJson() {
 	if json.Valid(jsonDataFromApi) {
 		json.Unmarshal(jsonDataFromApi, &jsonCourse)
 		fmt.Printf("Parsed Course Json : \n %#v\n", jsonCourse)
-
 	} else {
 		fmt.Println("Invalid Json")
 	}
@@ -90,7 +102,7 @@ func DecodeJson() {
 	fmt.Println(decodedJsonMap["courseName"])
 
 	for key, value := range decodedJsonMap {
-		fmt.Printf("Key is %v and it's value is %v (type %T)\n", key, value, value)
+		fmt.Printf("%v : %v (type %T)\n", key, value, value)
 	}
 
 }

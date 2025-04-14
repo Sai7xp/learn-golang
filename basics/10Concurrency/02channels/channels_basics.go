@@ -31,7 +31,7 @@ func main() {
 	// Channels Advanced
 	PrintEvenOddInSync()
 
-	// Create a stream of data using channels
+	// Generators : Create a stream of data using channels
 	CreateDataStreamUsingChannels()
 }
 

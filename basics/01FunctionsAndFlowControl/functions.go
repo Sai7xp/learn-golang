@@ -4,6 +4,7 @@ import (
 	"fmt"
 	m "math"
 	"math/rand"
+	"sync"
 )
 
 const (
@@ -122,6 +123,27 @@ func functionsInGo() {
 		fmt.Println("Hello from Anonymous Function", n)
 	}
 	ano(12)
+
+	/*
+
+	 */
+	fmt.Println("→→→→→→→→→→→ Passing Parameter to Anonymous Function ←←←←←←←←←")
+	var wg sync.WaitGroup
+	nums := make([]int, 10)
+	for i := range 10 {
+		nums[i] = i
+	}
+
+	for _, num := range nums {
+		wg.Add(1)
+		// Explicitly pass 'num' to ensure each goroutine gets its own copy
+		go func(n int) {
+			defer wg.Done()
+			fmt.Println(n) // Prints each 'num' individually, as expected
+		}(num)
+	}
+
+	wg.Wait()
 
 	/*
 		Variadic Functions

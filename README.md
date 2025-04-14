@@ -53,13 +53,14 @@
 ### 🌻🌻 Concurrency
 
 - [Sequential vs Concurrency Execution - Fibonacci][def4]
-- [Channels - Buffered, UnBuffered, Select Statement, Creating Stream using Channels][def34]
+- [Channels - Buffered, UnBuffered, Select Statement, **Generator** : Creating a Stream using Channel][def34]
 - [Concurrency Patterns - FanIn(Multiplexing), FanOut(DeMultiplexing)][def30]
 - [Producers, Consumers Pattern(Imp for interviews)][def31]
 
 ### Dealing with JSON
 
 - [Encoding & Decoding JSON][def5]
+- [Be Careful while Json.Marshalling a `rune`][def5]
 
 ### Web Server in Go
 
@@ -83,6 +84,8 @@
 
 - [Date & Time Formats][def27]
 - [Simple Slot Machine cli app to understand Loops, Random Numbers, Reading input from user, 2D arrays][def28]
+- [Generics][def35]
+- [**Panic & Recover** with real world example][def36]
 
 [def]: basics/03Closures
 [def2]: basics/01FunctionsAndFlowControl/functions.go
@@ -118,3 +121,5 @@
 [def32]: basics/12Context/
 [def33]: basics/12Context/context_http_usecase.go
 [def34]: basics/10Concurrency/02channels
+[def35]: basics/07generics
+[def36]: basics/13AllOthers/panic-recover.go

@@ -153,12 +153,12 @@ func moreOnRunes() {
 	/*
 		-> len(name) returns the number of bytes in name
 		-> each character may take more than a byte
-		-> so use for-range loop to loop through a string
+		-> so use for-range loop to loop through a string instead of for..in
 	*/
 	fmt.Println("len of name: ", len(name))
 
-	for i, val := range name {
-		fmt.Printf("i : %v byte : %c and rune: %c\n", i, name[i], val)
+	for i, unicodePoint := range name {
+		fmt.Printf("i : %v byte : %c and rune: %c\n", i, name[i], unicodePoint)
 	}
 
 	for i := 0; i < len(name); i++ {

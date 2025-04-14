@@ -99,27 +99,38 @@ func slicesInGo() {
 	/// Creating slice from an Array
 	sliceFromArray := numbers[1:5]
 	fmt.Println("slice created from array ", sliceFromArray)
+
+	sliceFromArray[0] = 99 // 🔴 This will modify the underlying array as well
+	fmt.Println("sliceFromArray[0] = 99 - ", sliceFromArray)
+	fmt.Println("numbers: ", numbers)
+
 	sliceFromArray = numbers[2:]
 	fmt.Println("slice created from array ", sliceFromArray)
 	fmt.Println()
 
+	// Creating a duplicate slice (checkout slices_deep_copy_shallow_copy.go file)
+	fmt.Println("Original Slice ", negNums)
 	duplicateSlice := negNums
+	negNums[0] = -999999 // 🔴 This will change duplicateSlice as well
 	fmt.Println("Duplicate Slice ", duplicateSlice)
 	fmt.Println("Original Slice ", negNums)
 	negNums = append(negNums, -10, -11)
-	negNums[0] = -999999
+	negNums[0] = 0 // 🔴 This will NOT affect duplicateSlice since a new slice has been created in above line - append function
 	fmt.Println("Updated negNums Slice ", negNums)
 	fmt.Println("Duplicate Slice ", duplicateSlice)
 
-	var unInitSlice []int // un initialized
-	fmt.Println("unInitSlice ", unInitSlice, unInitSlice == nil, len(unInitSlice))
+	var unInitSlice []int                                                          // un initialized
+	fmt.Println("unInitSlice ", unInitSlice, unInitSlice == nil, len(unInitSlice)) // unInitSlice  [] true 0
+	// we have to use the append method to add values since the slice is unintialized and points to nil
+	// unInitSlice = append(unInitSlice, 99)
 
+	/* 🌻 Different ways to create slices */
 	var initSliceWithNoElements = []int{}
 	inSliceNoEle := []int{}
 	sliceUsingMake := make([]int, 0)
-	fmt.Println("initSliceWithNoElements ", initSliceWithNoElements, initSliceWithNoElements == nil, len(initSliceWithNoElements))
-	fmt.Println("inSliceNoEle ", inSliceNoEle, inSliceNoEle == nil, len(inSliceNoEle))
-	fmt.Println("sliceUsingMake ", sliceUsingMake, sliceUsingMake == nil, len(sliceUsingMake))
+	fmt.Println("initSliceWithNoElements ", initSliceWithNoElements, initSliceWithNoElements == nil, len(initSliceWithNoElements)) // initSliceWithNoElements  [] false 0
+	fmt.Println("inSliceNoEle ", inSliceNoEle, inSliceNoEle == nil, len(inSliceNoEle))                                             // inSliceNoEle  [] false 0
+	fmt.Println("sliceUsingMake ", sliceUsingMake, sliceUsingMake == nil, len(sliceUsingMake))                                     // sliceUsingMake  [] false 0
 
 	/// LENGTH and CAPACITY of SLICE
 	/*
