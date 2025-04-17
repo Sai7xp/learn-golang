@@ -69,7 +69,7 @@ func getMusicHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// we can send image/png as well
+	// we can send image as "Content-Type" : "image/png"
 	w.Header().Set("Content-Type", "audio/mpeg")
 
 	file, err := os.Open("Arunachala.mp3")
@@ -89,12 +89,39 @@ func getMusicHandler(w http.ResponseWriter, r *http.Request) {
 	// }
 }
 
+func uploadFileHandler(w http.ResponseWriter, r *http.Request) {
+	// r.ParseMultipartForm()
+	file, header, err := r.FormFile("Profile")
+	if err != nil {
+		http.Error(w, "Error retrieving the file with name 'Profile'", http.StatusBadRequest)
+		return
+	}
+	defer file.Close()
+
+	// create a new local file
+	newLocalFile, err := os.Create(header.Filename)
+	if err != nil {
+		http.Error(w, fmt.Sprintf("Unable to create the file : %v", err), http.StatusInternalServerError)
+		return
+	}
+	defer newLocalFile.Close()
+
+	fileBytes, _ := io.ReadAll(file)
+	newLocalFile.Write(fileBytes)
+	// Alternatively: io.Copy(newLocalFile, file)
+
+	// Return success response
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(map[string]string{"message": "Image Uploaded Successfully"})
+}
+
 func main() {
 
 	// register the handlers
 	http.HandleFunc("/foo", getHandler)                 // GET
 	http.HandleFunc("/sendMessage", sendMessageHandler) // POST
 	http.HandleFunc("/music", getMusicHandler)          // GET
+	http.HandleFunc("/upload", uploadFileHandler)       // POST
 
 	go func() {
 		time.Sleep(time.Second) // wait for a sec until http server starts listening on given PORT
