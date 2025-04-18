@@ -16,13 +16,15 @@ func newVsMake() {
 
 	*/
 
-	slice := make([]int, 0)      // For slices
-	mapp := make(map[string]int) // For maps
-	channel := make(chan int)    // For channels (unbuffered channel)
+	slice := make([]int, 0)          // For slices
+	mapp := make(map[string]int)     // For maps
+	channel := make(chan int)        // For channels (unbuffered channel)
+	buffChannel := make(chan int, 2) // For channels (buffered channel)
 
 	fmt.Println("slice created using make:", slice)
 	fmt.Println("map created using make:", mapp)
 	fmt.Println("channel created using make:", channel)
+	fmt.Println("buffered channel created using make:", buffChannel)
 
 	go func() {
 		channel <- 9
