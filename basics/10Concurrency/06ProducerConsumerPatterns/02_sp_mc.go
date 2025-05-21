@@ -11,6 +11,8 @@ func SingleProducerMultipleConsumers() {
 	consumersCount := 3
 	ch := make(chan string)
 
+	go producer2(ch)
+
 	var wg sync.WaitGroup
 
 	// start multiple consumers
@@ -20,8 +22,6 @@ func SingleProducerMultipleConsumers() {
 			consumer2(i+1, ch, &wg)
 		}()
 	}
-
-	go producer2(ch)
 
 	wg.Wait()
 }
