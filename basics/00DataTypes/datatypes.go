@@ -78,6 +78,9 @@ func main() {
 	printAllSubStrings("Meow")
 
 	differentWaysToReadInputFromUser()
+
+	// Stringer interface
+	runStringer()
 }
 
 // DATA TYPES

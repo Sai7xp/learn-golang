@@ -32,6 +32,9 @@ import "fmt"
 
 	void modify(int *b) { *b = 90; }
 
+	POINTER   - It's just a variable. Holds an address of a variable
+	REFERENCE - NOT a variable. It's an alias to a variable
+
 	What is the use of pass by reference in c++ if we can modify the value using pass by pointer
 	1. Pointers can be null but References cannot be null (eliminates null checks)
 	2. References can be more efficient because they avoid the overhead of pointer dereferencing
