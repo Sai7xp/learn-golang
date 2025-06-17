@@ -1,4 +1,4 @@
-### What is Context?
+## What is Context?
 
 Context package is used for carrying cancelation signals, deadlines.
 
@@ -6,7 +6,7 @@ Context is a way for us to add a Timeout or Cancellation to a goroutine.
 
 It is useful in managing concurrent operations, handling timeouts, canceling tasks when they are no longer required.
 
-#### Key Features
+### Key Features
 
 **Context Values:** Allows us to store values that can be accessed across different parts of your program. It is useful for passing the data.
 
@@ -29,14 +29,14 @@ ctx, cancel := context.WithDeadline(context.Background(), deadline)
 ctx, cancel := context.WithTimeout(context.Background(), 1*time.Minute)
 ```
 
-#### context.Background() vs context.TODO()
+### context.Background() vs context.TODO()
 
 Both returns an empty context(context.Context object). They are often used to create root contexts.
 `context.Background()`: Use when there is no existing context, and you want to start a new one. Typically used in top-level functions like main() and init()
 
 `context.TODO()`: When context usage is undecided or TBD
 
-#### Where Is It Useful?
+### Where Is It Useful?
 
 - HTTP Handlers → Cancel requests if the client closes the connection.
 - Database Queries → Abort queries if they take too long.

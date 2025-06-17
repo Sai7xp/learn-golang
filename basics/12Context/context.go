@@ -9,6 +9,14 @@ import (
 func main() {
 	fmt.Println("Context Package in Go")
 
+	/*
+		Context With Value
+	*/
+	ctx := context.Background()
+	contextWithValueChannel := make(chan string)
+	contextWithValue(ctx, contextWithValueChannel)
+	fmt.Println(<-contextWithValueChannel)
+
 	contextWithHTTP()
 
 	contextWithCancel()
@@ -17,13 +25,6 @@ func main() {
 
 	contextWithTimeoutExample2()
 
-	/*
-		Context With Value
-	*/
-	ctx := context.Background()
-	contextWithValueChannel := make(chan string)
-	contextWithValue(ctx, contextWithValueChannel)
-	fmt.Println(<-contextWithValueChannel)
 }
 
 func contextWithValue(ctx context.Context, ch chan<- string) {
