@@ -58,10 +58,10 @@ func main() {
 	openClosedYetAnotherExample()
 
 	// Liskov
-	Liskov()
+	RunLiskovExample2()
 
 	// Interface Segregation
-	InterfaceSegregation()
+	// InterfaceSegregation()
 
 	// Dependency Inversion
 	DependencyInversion()

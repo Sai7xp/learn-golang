@@ -16,6 +16,10 @@ func main() {
 
 	// Loops -> classic for loop, for-in, using for loop as while loop, Range over integers
 	flowControlInGO()
+
+	// anonymous functions
+	filterEvenNumbers()
+
 }
 
 // Function with one argument of type int
