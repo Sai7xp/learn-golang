@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"learngo/advanced/12-encryption-decryption/symmetric"
+	"learngo/advanced/11-encryption-decryption/symmetric"
 )
 
 func main() {

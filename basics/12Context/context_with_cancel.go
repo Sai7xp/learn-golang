@@ -8,33 +8,35 @@ import (
 
 func contextWithCancel() {
 	ctx, cancelFunc := context.WithCancel(context.Background())
+
 	go func() {
 		fmt.Println("calling cancel fn() in 2 secs")
 		time.Sleep(2 * time.Second)
-		fmt.Println("context cancel fn called")
 		cancelFunc() // we can cal this cancel whenever we want
 	}()
 
-	data, err := longRunning(ctx)
+	msg, err := longRunningUploadTask(ctx)
 	if err != nil {
-		fmt.Println("long running task exited with error", err)
+		fmt.Println("❌ long running task exited with error: ", err)
 		// return
 	}
-
-	fmt.Println("data from long running task: ", data)
-	fmt.Scanln()
+	fmt.Println("message from long running task: ", msg)
+	time.Sleep(time.Second * 5)
 }
 
-func longRunning(ctx context.Context) (int, error) {
+func longRunningUploadTask(ctx context.Context) (string, error) {
 	// Select blocks the code until one of its cases can run.
 	// It chooses one at random if multiple are ready.
-	select {
-	case <-ctx.Done():
-		fmt.Println("cancel fn called")
-		return 0, ctx.Err()
 
-	case <-time.After(6 * time.Second):
-		fmt.Println("After 6 Seconds")
-		return 10, nil
+	for i := range 100 { // assume reading a file chunks by chunks and uploading
+		select {
+		case <-ctx.Done():
+			fmt.Println("cancelling upload task....")
+			return "", ctx.Err()
+		default:
+			time.Sleep(time.Millisecond * 100)
+			fmt.Print(i, "..")
+		}
 	}
+	return "Upload task completed", nil
 }

@@ -6,7 +6,7 @@ import (
 )
 
 // Demultiplex a stream of data into multiple concurrent streams
-// https://ornlu-is.github.io/go_fan_out_pattern/
+// https://www.karanpratapsingh.com/courses/go/advanced-concurrency-patterns
 
 /*
 Fan Out is a concurrency pattern where a single stream of data is distributed to multiple Goroutines

@@ -90,6 +90,24 @@ func ChannelsExample() {
 	fmt.Println(4)
 }
 
+/*
+Select statement is used to wait on multiple channels simultaneously
+Usecases - implement timeouts, cancelation signals
+
+	select {
+		case data := <-dataChan:
+			fmt.Println("Got data:", data)
+		case <-ctx.Done():
+			fmt.Println("Context cancelled:", ctx.Err())
+	}
+
+	select {
+		case res := <-someChannel:
+			fmt.Println("Got result:", res)
+		case <-time.After(2 * time.Second):
+			fmt.Println("Timed out!")
+	}
+*/
 func SelectStatement() {
 	chan1 := make(chan string)
 	chan2 := make(chan string)

@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"io"
 	"net/http"
 	"time"
 )
@@ -40,7 +41,6 @@ func callThirdPartyAPI(ctx context.Context, userId int) (bool, error) {
 	select {
 	case <-ctx.Done():
 		return false, errors.New("context timeout")
-
 	case <-time.After(time.Millisecond * 300):
 		return true, nil
 	}
@@ -48,7 +48,7 @@ func callThirdPartyAPI(ctx context.Context, userId int) (bool, error) {
 
 // create a context with timeout and make list of api calls using go routines
 func contextWithTimeoutExample2() {
-	ctx, cancel := context.WithTimeout(context.Background(), time.Millisecond*3)
+	ctx, cancel := context.WithTimeout(context.Background(), time.Millisecond*30)
 	defer cancel()
 
 	urls := []string{
@@ -68,19 +68,20 @@ func contextWithTimeoutExample2() {
 func fetchAPI(ctx context.Context, url string, result chan<- string) {
 	// The http.NewRequestWithContext() function is used to create an HTTP request
 	// with the provided context. If any of the API requests exceed the timeout duration,
-	// the context's cancellation signal is propagated, canceling all other ongoing requests
+	// the context's cancellation signal is propagated, canceling the ongoing request
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		result <- fmt.Sprintf("Error creating request for %s: %s", url, err.Error())
 		return
 	}
 
-	client := http.DefaultClient
+	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
 		result <- fmt.Sprintf("Error making request: %s", err.Error())
 		return
 	}
 	defer resp.Body.Close()
-	result <- fmt.Sprintf("Response from %s: %d", url, resp.StatusCode)
+	response, _ := io.ReadAll(resp.Body)
+	result <- fmt.Sprintf("Response from %s: %v", url, string(response))
 }
