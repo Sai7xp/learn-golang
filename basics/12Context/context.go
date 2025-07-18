@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"fmt"
-	"time"
 )
 
 func main() {
@@ -17,14 +16,13 @@ func main() {
 	contextWithValue(ctx, contextWithValueChannel)
 	fmt.Println(<-contextWithValueChannel)
 
-	contextWithHTTP()
-
 	contextWithCancel()
 
 	contextWithTimeout()
 
 	contextWithTimeoutExample2()
 
+	contextWithHTTPServer() // 🌻
 }
 
 func contextWithValue(ctx context.Context, ch chan<- string) {
@@ -34,7 +32,6 @@ func contextWithValue(ctx context.Context, ch chan<- string) {
 
 	go func(c context.Context) {
 		userID := ctx.Value(ctxKey)
-		time.Sleep(5 * time.Second)
 		ch <- fmt.Sprintln("User ID:", userID)
 	}(ctx)
 
