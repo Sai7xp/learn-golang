@@ -48,7 +48,7 @@ func mapsInGo() {
 	fmt.Println(subjectMarks)
 	fmt.Println("Length of subjectMarks Map : ", len(subjectMarks))
 
-	marks := map[string]int{}
+	marks := map[string]int{}                               // these curly braces at the end initializes an empty map
 	fmt.Println("is marks value == nil ? : ", marks == nil) // false, marks is not nil
 
 	marks["person1"] = 45

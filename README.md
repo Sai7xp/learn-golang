@@ -24,6 +24,8 @@
 ### Maps & Structs
 
 - [Maps & Structs][def19]
+- [Stringer - Interface][def37]
+- [Best Usecase for Type Alias][def42]
 - [Receiver Functions(Promotes Encapsulation) - Methods on Struct or any other specific Type][def29]
 - [Maps are not Reference Variables][def18]
 - [Why `nil` Slices accept new values, but `nil` Maps don't][def25]
@@ -43,7 +45,8 @@
 
 - [Pointers Introduction][def12]
 - [🌻 new() vs make() & Zero-Values of all types][def20]
-- [🌻 Does Go supports Pass By Ref ?][def14]
+- [new keyword usecase][def41]
+- [🌻 Does Go supports Pass By Ref ? POINTER vs REFERENCE what is the diff ?(Go doesn't have reference concept like c++)][def14]
 - [Using Pointers with Structs][def13]
 
 ### Composition & Embedding
@@ -53,6 +56,8 @@
 ### 🌻🌻 Concurrency
 
 - [Sequential vs Concurrency Execution - Fibonacci][def4]
+- [GoRoutines, Race Conditions, sync.Mutex, WaitGroups][def39]
+- [sync.RWMutex - Allows multiple concurrent readers OR one writer, but not both][def40]
 - [Channels - Buffered, UnBuffered, Select Statement, **Generator** : Creating a Stream using Channel][def34]
 - [Concurrency Patterns - FanIn(Multiplexing), FanOut(DeMultiplexing)][def30]
 - [Producers, Consumers Pattern(Imp for interviews)][def31]
@@ -64,7 +69,7 @@
 
 ### Web Server in Go
 
-- [🌻 Creating a simple HTTP Web Server][def6]
+- [🌻 Creating a simple HTTP Web Server - /hello, /getMusic, /uploadImage Handlers][def6]
 - [Creating GET, POST, PUT, DELETE HTTP Methods - CRUD][def7]
 
 ### Context in Go
@@ -80,12 +85,17 @@
 - [**I**nterface Seggregation Principle](SOLID-Principles)
 - [**D**ependency Inversion Principle](SOLID-Principles)
 
+### Cryptography - Encryption, Decryption, Hashing
+
+- [Encryption & Decryption: Symmetric, Asymmetric, AES, ECDH and all][def38]
+
 ### Others
 
 - [Date & Time Formats][def27]
 - [Simple Slot Machine cli app to understand Loops, Random Numbers, Reading input from user, 2D arrays][def28]
 - [Generics][def35]
 - [**Panic & Recover** with real world example][def36]
+- [Writing loose coupling code in Go with real life usecase]() //TODO:
 
 [def]: basics/03Closures
 [def2]: basics/01FunctionsAndFlowControl/functions.go
@@ -123,3 +133,9 @@
 [def34]: basics/10Concurrency/02channels
 [def35]: basics/07generics
 [def36]: basics/13AllOthers/panic-recover.go
+[def37]: basics/00DataTypes/stringer.go
+[def38]: advanced/11-encryption-decryption
+[def39]: basics/10Concurrency/01goroutines
+[def40]: basics/10Concurrency/01goroutines/03RwMutex.go
+[def41]: basics/08Pointers/new_usage.png
+[def42]: basics/05StructsAndMaps/type_alias.go
