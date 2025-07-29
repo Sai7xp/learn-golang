@@ -12,10 +12,21 @@ Program will stop it's execution when panic is called.
 
 recover() : let's you recover from the panic situations, especially when we don't want our whole app to go down
 due to run time errors.
+
+NOTE: panic/recover is kind of similar to try/catch in other languages, but panic/recover is used only
+for truly unrecoverable conditions like:
+  - Nil pointer dereference
+  - Any runtime issues (divide by zero, index out of bounds)
+
+We should never use panic for normal error handling.
 */
 func PanicRecover() {
+
 	nums := [...]int{1, 2, 3}
 	printArray(nums)
+	// this print statement gets executed even though above printArray() caused a panic,
+	// because we recovered from the panic *within* printArray itself.
+	// otherwise if we put the recovery logic in this function, then the below print statement does not gets executed
 	fmt.Println("Do some other Computation")
 
 	// panic & recover real world example
@@ -23,7 +34,6 @@ func PanicRecover() {
 }
 
 func printArray(nums [3]int) {
-
 	defer func() {
 		if r := recover(); r != nil {
 			fmt.Println("Recovered from panic: ", r)

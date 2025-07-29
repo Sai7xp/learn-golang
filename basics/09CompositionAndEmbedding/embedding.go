@@ -9,7 +9,7 @@ import (
 )
 
 /*
-* Embedding Real-life example
+* Embedding example
  */
 
 // User struct represents basic user in our app
@@ -36,14 +36,12 @@ func (a Admin) DisplayPermissions() {
 	fmt.Printf("Admin %s has the following permissions: %v\n", a.Username, a.Permissions)
 }
 
-func main() {
+func RunEmbeddingUsage() {
 	user := User{
 		email:    "user@go.dev",
 		Username: "Go Dev",
 	}
-
 	user.displayUserInfo()
-
 	admin := Admin{
 		User: User{
 			email:    "admin@go.dev",
@@ -55,55 +53,44 @@ func main() {
 	admin.displayUserInfo() // 😎 No need to access displayUserInfo() like `a.user.displayUserInfo()`
 	admin.DisplayPermissions()
 
-	/*
-		More Examples
-	*/
-	RunComicExample()
-
 	// check the below example as well
 	// https://gobyexample.com/struct-embedding
+
+	guest := Guest{}
+	fmt.Println("guest:", guest)
+	// guest.displayUserInfo() // 🚨 panic - nil pointer dereference. since *User is embedded in Guest
+
+	// Interface Embedding
+	RunInterfaceEmbedding()
+}
+
+type Guest struct {
+	*User
 }
 
 /*
-Another Example for Embedding
+Can we embed interfaces into structs ?
+Yes, but it is not recommended. We can embed interface into another interface
+`io.ReadWriter` interface embeds Reader and Writer interfaces
 */
 
-type Comic struct {
-	Universe string
+type Service interface {
+	GetUser(userId string) string
+	SayHello()
 }
 
-func (comic *Comic) prinUniverse() {
-	fmt.Println("Comic Universe")
+type MyMock struct {
+	// this is an interface how will you initialize this field while creating object for MyMock ?
+	// we have to create one struct which implements Service and use it here. then what's the point of MyMock
+	Service // interface embedded in a struct, which is not recommended
 }
 
-type Marvel struct {
-	// anonymous field,
-	// the struct is embedded
-	Comic
-	Owner string
+func (m MyMock) SayHello() {
+	fmt.Println("SayHello method belongs to MyMock struct")
 }
 
-func (comic *Marvel) prinUniverse() {
-	fmt.Println("Marvel Universe")
-}
-
-type DC struct {
-	Comic
-	Owner string
-}
-
-func RunComicExample() {
-	fmt.Println("-------------- Another Comic Example --------------")
-	cm := Comic{"Comic MilkyWay"}
-	cm.prinUniverse()
-
-	mar := Marvel{Comic{Universe: "MCU"}, "ironman"}
-	dc := DC{Comic{Universe: "DCU"}, "batman"}
-	fmt.Println(mar.Universe)
-	mar.prinUniverse() // Marvel Universe - since we have receiver fn for Marvel it will print Marvel Universe
-	// prinUniverse fn of Marvel will override the prinUniverse of Comic
-
-	fmt.Println(dc.Universe)
-	dc.prinUniverse() // since we don't have any receiver function for DC - Comic Universe will be printed
-
+func RunInterfaceEmbedding() {
+	mm := MyMock{}
+	mm.SayHello()   // if we don't define this method for MyMock, then this will also cause panic
+	mm.GetUser("1") // 🚨 panic: GetUser behaviour is not implemented, it's just an interface method
 }

@@ -10,6 +10,9 @@ import (
 	"sync"
 )
 
+// 🌻 For more about Race Conditions in Go
+// https://coherent-candle-2b4.notion.site/GoLang-Learnings-4f2ef76744314f7b8c9635ab2c62ebf4?source=copy_link
+
 /*
 below code produces a race condition because of the go routines usage
 throws -> fatal error: concurrent map writes

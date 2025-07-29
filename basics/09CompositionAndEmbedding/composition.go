@@ -24,6 +24,8 @@ type Person struct {
 }
 
 func main() {
+	// RunEmbeddingUsage()
+
 	p := Person{
 		Name: "Jane",
 		Age:  28,
@@ -34,9 +36,10 @@ func main() {
 		},
 	}
 
-	fmt.Println(p.Name)
+	fmt.Println(p)
 	fmt.Println(p.Address.City) // Accessing Address's field through Person
 
 	// accessing the Address method
 	p.Address.printAddress()
+
 }
