@@ -24,7 +24,7 @@ func (u User) displayUserInfo() {
 }
 
 type Admin struct {
-	User        // Embedding User Struct (clearly states that Admin "is-a" User relationship)
+	User        // Embedding User Struct (Admin 'Has-A' User) This is not true inheritance
 	Permissions []string
 }
 
@@ -34,6 +34,11 @@ func (a Admin) DisplayPermissions() {
 		we can directly access Username as `a.Username` instead of `a.user.Username`
 	*/
 	fmt.Printf("Admin %s has the following permissions: %v\n", a.Username, a.Permissions)
+}
+
+// pass Admin to this function and see if it works, It won't work because go doesn't support true inheritance
+func PrintUser(u User) {
+	fmt.Println(u)
 }
 
 func RunEmbeddingUsage() {
@@ -50,12 +55,18 @@ func RunEmbeddingUsage() {
 		Permissions: []string{"write", "read"},
 	}
 
+	// var myUser User = Admin{} // ❌ this is not allowed in Go, but in Java we can do this. assigning child object to parent class
+	// PrintUser(admin) // ❌
+
 	admin.displayUserInfo() // 😎 No need to access displayUserInfo() like `a.user.displayUserInfo()`
 	admin.DisplayPermissions()
 
 	// check the below example as well
 	// https://gobyexample.com/struct-embedding
 
+	type Guest struct {
+		*User // this has to be initialized since it is a pointer, otherwise it will panic when we access methods belongs to User
+	}
 	guest := Guest{}
 	fmt.Println("guest:", guest)
 	// guest.displayUserInfo() // 🚨 panic - nil pointer dereference. since *User is embedded in Guest
@@ -64,13 +75,9 @@ func RunEmbeddingUsage() {
 	RunInterfaceEmbedding()
 }
 
-type Guest struct {
-	*User
-}
-
 /*
-Can we embed interfaces into structs ?
-Yes, but it is not recommended. We can embed interface into another interface
+Can we embed interface into structs ?
+Yes, but it is not recommended. But we can embed interface into another interface
 `io.ReadWriter` interface embeds Reader and Writer interfaces
 */
 
