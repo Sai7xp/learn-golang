@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"learngo/utils"
 	"strconv"
+	"unsafe"
 )
 
 /*
@@ -38,8 +39,8 @@ const moonsOfJupiter int32 = 95 // typed constant
 // flutter:=90
 
 func main() {
-	moreOnRunes()
-	return
+	fmt.Println("Size of int:", unsafe.Sizeof(int(0)), "bytes") // on 32-bit systems -> 4 Bytes || on 64-bit -> 8 bytes
+
 	// 1️⃣ VARIABLES
 	println("Variables in GO Lang")
 	v := true
