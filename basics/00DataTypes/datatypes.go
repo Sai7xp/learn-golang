@@ -6,41 +6,47 @@ import (
 	"strconv"
 )
 
-/* 🌻🌻🌻🌻🌻🌻🌻
+/*
+🌻🌻🌻🌻🌻🌻🌻
+
 1. Basic type: Numbers, Strings, and Boolean
 2. Aggregate type: Array and Structs(Composite Type)
 3. Reference type: Pointers, slices, maps, functions, and channels
 4. Interface type
 
-🌻🌻🌻🌻🌻🌻🌻 */
-
-/*
-variable declarations without initializers 🪹
-
-0 for numeric types,
-false for the boolean type,
-"" (the empty string) for strings
+🌻🌻🌻🌻🌻🌻🌻
 */
-var java, kotlin int
-var c bool
-var python string
+
+// variable declarations without initializers 🪹
+var java, kotlin int // 0
+var c bool           // false
+var python string    // ""
 
 // Variables with Initializers 🫄
 var dart, js float32 = 8.543, 9
 var typescript = "BOSS" // No Need to Specify the type here
-const totalPlanets = 8
+
+// TYPED vs UNTYPED Constants
+const totalPlanets = 8     // untyped constant
+var y int64 = totalPlanets // OK ✅
+
+const moonsOfJupiter int32 = 95 // typed constant
+// var z int64 = moonsOfJupiter // ❌ Error
 
 // ❌ outside a function, every statement begins with a keyword
 // (var, func, and so on) and so the := construct is not available
 // flutter:=90
 
 func main() {
+	moreOnRunes()
+	return
 	// 1️⃣ VARIABLES
 	println("Variables in GO Lang")
 	v := true
+	println("Bool variable : ", v)
+
 	var i, j int = 0, 1
 	i += 999
-	println("Bool variable : ", v)
 	println(i, j)
 
 	fmt.Println("String and bool with default values : ", python, c)
@@ -52,11 +58,13 @@ func main() {
 
 	// 😎 Creating Variables using Short-Hand Notation :=
 	println("Short Variables in GO Lang")
+
 	{
 		// Block Level Scope
 		short := 78
 		println("Short Notation: ", short)
 	}
+
 	x := 90.0988
 	fmt.Println("Short Notation: ", x)
 	/*
@@ -121,15 +129,11 @@ var (
 func basicDataTypes() {
 	// Non-ASCII literal. Go source is UTF-8.
 	g := 'Σ' // rune type, an alias for int32, holds a unicode code point
-	moreOnRunes()
 	fmt.Printf("Type : %T and value : %v", g, g)
+	moreOnRunes()
 
 	var eightBitInt int8 = -128
 	fmt.Println(eightBitInt)
-	xx, yy, zz := 0, 5, 6
-	var xyz, zyx int
-	fmt.Println(xx, yy, zz) // 0 5 6
-	fmt.Println(xyz, zyx)   // 0 0
 
 	var oneByte byte = 255
 	var Uint8Bits uint8 = 255
@@ -150,23 +154,31 @@ func basicDataTypes() {
 
 func moreOnRunes() {
 	var name = "नमस्ते"
-
-	runeee := "न"
-	fmt.Println(len(runeee))
+	fmt.Println("len of name: ", len(name))
 	/*
 		-> len(name) returns the number of bytes in name
-		-> each character may take more than a byte
+		-> each character may take more than a byte (UTF-8 Encoded)
 		-> so use for-range loop to loop through a string instead of for..in
 	*/
-	fmt.Println("len of name: ", len(name))
 
-	for i, unicodePoint := range name {
-		fmt.Printf("i : %v byte : %c and rune: %c\n", i, name[i], unicodePoint)
+	for i, eachRune := range name {
+		fmt.Printf("i : %v byte : %c and rune: %c\n", i, name[i], eachRune)
 	}
 
 	for i := 0; i < len(name); i++ {
 		fmt.Printf("i : %v and char : %c\n", i, name[i])
 	}
+
+	// Another Example
+	str := "A😊"
+	fmt.Println("str len :", len(str)) // 5 bytes in UTF-8
+	fmt.Println([]rune(str))           // [65 128522]
+	fmt.Println(len([]rune(str)))      // 2 runes, each 4 bytes in memory
+	/*
+		"A" → 1 byte in UTF-8
+		"😊" → 4 bytes in UTF-8
+		But when converted to []rune, each rune takes 4 bytes, so []rune(s) uses 2 × 4 = 8 bytes in memory
+	*/
 }
 
 func printAllSubStrings(name string) {
