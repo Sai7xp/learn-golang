@@ -69,6 +69,73 @@ func (g *Game) CheckWin() bool {
 	return false
 }
 
+// CheckWinPro checks whether the most recent move at (row, col)
+// resulted in a winning condition for the current player
+//
+// Instead of scanning the entire board, this optimized method only validates:
+//  1. The row where the move was placed.
+//  2. The column where the move was placed.
+//  3. The main diagonal (top-left → bottom-right), if the move lies on it.
+//  4. The anti-diagonal (top-right → bottom-left), if the move lies on it.
+//
+// This reduces time complexity from O(N²) (full board scan) to O(N),
+func (g *Game) CheckWinPro(row, col int) bool {
+	curPlayerSymbol := g.Players[g.CurrentPlayerIndex].Symbol
+	n := g.Board.Size
+	// check the row
+	rowWin := true
+	for c := 0; c < n; c++ {
+		if g.Board.Grid[row][c] != curPlayerSymbol {
+			rowWin = false
+			break
+		}
+	}
+	if rowWin {
+		return true
+	}
+
+	// check the col
+	colWin := true
+	for r := 0; r < n; r++ {
+		if g.Board.Grid[r][col] != curPlayerSymbol {
+			colWin = false
+			break
+		}
+	}
+	if colWin {
+		return true
+	}
+
+	// check main diagonal (top left to bottom right)
+	if row == col {
+		diagWin := true
+		for i := 0; i < n; i++ {
+			if g.Board.Grid[i][i] != curPlayerSymbol {
+				diagWin = false
+				break
+			}
+		}
+		if diagWin {
+			return true
+		}
+	}
+
+	// check anti diagonal, if moves lies in it
+	if row+col == n-1 {
+		antiDiagWin := true
+		for i := 0; i < n; i++ {
+			if g.Board.Grid[i][n-i-1] != curPlayerSymbol {
+				antiDiagWin = false
+				break
+			}
+		}
+		if antiDiagWin {
+			return true
+		}
+	}
+	return false
+}
+
 func (g *Game) SwitchPlayer() {
 	g.CurrentPlayerIndex = 1 - g.CurrentPlayerIndex
 }

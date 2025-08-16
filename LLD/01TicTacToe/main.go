@@ -41,7 +41,7 @@ func main() {
 		}
 
 		// check for win
-		if game.CheckWin() {
+		if game.CheckWinPro(row, col) {
 			fmt.Println(currentPlayer.Name, "Won!!")
 			break
 		}
