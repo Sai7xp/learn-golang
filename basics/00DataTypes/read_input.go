@@ -30,7 +30,7 @@ func usingScanAndScanf() {
 	fmt.Println("-------- Reading Input from using Scan & Scanf ---------")
 	/*
 		-------> fmt.Scan <-------
-		1. Reads space separated values from input. And it won't stop reading input even
+		1. Reads `space separated` values from input. And it won't stop reading input even
 		   if Enter key is pressed while reading multiple inputs.
 		2. Doesn't require a format string, attempts to read input according
 		   to type of variables provided.
@@ -43,16 +43,17 @@ func usingScanAndScanf() {
 
 	/*
 		--------> fmt.Scanf <-------
-		1. It can read space-separated values.
+		0. Stops reading when enter key is pressed
+		1. It can read space-separated values and also we can specify the delimiter
 		2. Requires a format string, like "%d" for integer, "%s" for string to specify what
 		   type of input it expects and how to parse it
 		3. More control over how the input is read and formatted.
 
 	*/
-	var c, d int
-	fmt.Print("Enter two integer values c and d : ")
-	fmt.Scanf("%d %d", &c, &d)
-	fmt.Println("c:", c, "d:", d)
+	var day, month, year int
+	fmt.Print("Enter date (dd/mm/yyyy): ")
+	fmt.Scanf("%d/%d/%d", &day, &month, &year)
+	fmt.Println("Day:", day, "Month:", month, "Year:", year)
 
 }
 
@@ -63,7 +64,7 @@ func usingScanAndScanf() {
 	  but user types a non-integer value. it will result in error.
 
    2. `bufio.Scanner` reads input line by line. ideal for reading large inputs.
-      It reads any king of text input as string or Bytes. Then we need to convert
+      It reads any kind of text input as string or Bytes. Then we need to convert
 	  input into desired format.
 
 
