@@ -38,6 +38,7 @@ func main() {
 }
 
 // encode json
+// What is JSON encoding - encoding a value to a string
 func EncodeJson() {
 	courses := []Course{
 		{Name: "GO Lang", Price: 344.89, CreatedDate: time.Now(), TotalChapters: 67, Tags: []string{"backend", "concurrency"}, CourseInstructor: Instructor{Name: "google", Id: 690}, DummyData: []Data{
@@ -59,13 +60,22 @@ func EncodeJson() {
 	/*
 		⚠️ Avoid marshalling runes
 		rune is basically a number, a unicode point
-	*/
-	dataToEncode := []interface{}{"1", '1'}
+		What is JSON encoding - encoding a value to a string
 
+		'1' -> is a rune, basically a unicode point equals to 49
+		when we json.encode(49) we will get [52 57]
+
+		1 -> is a number, when we do json.encode(1) we will get [49]. 1 ascii is 49
+
+		"🌻" -> bytes:  [34 240 159 140 187 34] : 34 is for double quotes. and middle 4 bytes represents the ut8 encoding of 🌻
+
+	*/
+	dataToEncode := []interface{}{"1", '1', 1, "🌻"}
 	for _, eachData := range dataToEncode {
 		if bytes, err := json.Marshal(eachData); err == nil {
 			fmt.Println("bytes: ", bytes)
 			fmt.Println("string(bytes): ", string(bytes))
+			fmt.Println()
 		}
 	}
 }
