@@ -42,7 +42,8 @@ func printEvenNumbers(evenCh chan bool, oddCh chan bool, wg *sync.WaitGroup) {
 		// time.Sleep(time.Millisecond * 500)
 
 		// after printing 10 the last number of the series data will be sent to channel again here
-		// and odd loop is already executed, so someone should listen to it. so add extra <-ch in printOdd
+		// and odd loop is already executed, so someone should listen to it. so add extra <-oddCh in printOdd (after the loop)
+		// if we don't want extra <-oddCh, we can simply skip the below line when i == 10
 		oddCh <- true // Signal back to odd numbers
 	}
 }
