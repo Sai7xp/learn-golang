@@ -76,7 +76,9 @@ func GetUserController(w http.ResponseWriter, r *http.Request) {
 	// your custom logic
 }
 
-func CustomListenAndServe(addr string, handler http.Handler) {}
+func CustomListenAndServe(addr string, handler http.Handler) {
+	// http.ListenAndServe(addr, handler)
+}
 
 func BestTypeDefExample() {
 	// CustomListenAndServe accepts a handler which is basically an interface that has ServeHTTP(ResponseWriter, *Request) method

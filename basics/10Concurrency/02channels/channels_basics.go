@@ -9,20 +9,37 @@ import (
 	"time"
 )
 
-func main() {
-	fmt.Println("Channels in Go Lang")
+func GoChannelsBasics() {
+	// Example 1️⃣
+	fmt.Println(1)
+	goAheadChan := make(chan bool) // unbuffered channel (synchronous)
+	go func() {
+		time.Sleep(time.Second * 1)
+		close(goAheadChan)
+	}()
+	<-goAheadChan // this will wait until there's a data in channel or till the channel closes
+	fmt.Println(4)
 
-	ChannelsExample()
-
-	SelectStatement()
-
+	// Example 2️⃣
 	// we can read from the channel even after it is closed
 	ch := make(chan int, 1) // buffered channel
 	ch <- 1
 	close(ch)
 	data, ok := <-ch
-	// this ok will return false where there's no data in channel and we still try to read it
-	fmt.Println(data, " ", ok)
+	fmt.Println(data, " ", ok) // 1 true
+
+	data, ok = <-ch
+	// this ok will return FALSE only when the channel is closed && there's no data in it
+	fmt.Println(data, " ", ok) // 0 false
+	// ok == false means channel closed & drained
+}
+
+func main() {
+	fmt.Println("Channels in Go Lang")
+
+	GoChannelsBasics()
+
+	SelectStatement()
 
 	BufferedChannels()
 
@@ -71,23 +88,10 @@ func UnBufferedChannels() {
 	/*
 	 When will for range loops used on channel end ?
 	 1. When the channel is closed using close()
-	 2. All buffered values have been read after closing.
+	 2. All buffered values have been read after closing
 	*/
 
 	fmt.Println("channelsWithGoRoutines finished in  ", time.Since(timeNow))
-}
-
-func ChannelsExample() {
-	fmt.Println(1)
-
-	goAheadChan := make(chan bool)
-	go func() {
-		time.Sleep(time.Second * 1)
-		close(goAheadChan)
-	}()
-	<-goAheadChan // this will wait until there's a data in channel or channel closes
-
-	fmt.Println(4)
 }
 
 /*
