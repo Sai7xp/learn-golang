@@ -8,7 +8,6 @@ import (
 
 func main2() {
 	for i := 0; i < 10; i++ {
-
 		PrintEvenOddInSync()
 		fmt.Println("----------------------")
 	}
@@ -27,7 +26,7 @@ func PrintEvenOddInSync() {
 	go printEvenNumbers(evenCh, oddCh, &wg)
 	go printOddNumbers(evenCh, oddCh, &wg)
 
-	oddCh <- true
+	oddCh <- true // start process
 
 	wg.Wait()
 	fmt.Println("Printing completed!")
