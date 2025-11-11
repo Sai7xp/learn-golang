@@ -6,7 +6,10 @@
 - [Go By Example][def9]
 - [Learn Go with Tests][def10]
 - [🌻 Effective Go][def11]
-
+  
+### Go Linters
+ - [golangci-lint](https://golangci-lint.run/)
+   
 ### Data Types
 
 - [Numbers, Strings, Boolean][def3]
