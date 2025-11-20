@@ -6,6 +6,7 @@
 - [Go By Example][def9]
 - [Learn Go with Tests][def10]
 - [🌻 Effective Go][def11]
+- [Awesome Go - Curated list of awesome Go frameworks, libraries](https://awesome-go.com)
   
 ### Go Linters
  - [golangci-lint](https://golangci-lint.run/)
