@@ -14,7 +14,8 @@ func main() {
 // In Go, an interface is a collection of method signatures that a type can implement.
 // Interfaces provide a way to specify the behavior of an object:
 // what methods it should have, without defining how those methods should be implemented.
-//  This promotes polymorphism and allows different types to be treated
+//
+// This promotes polymorphism and allows different types to be treated
 // in a uniform way based on their behavior rather than their concrete implementation.
 
 type Shape interface {
@@ -23,9 +24,18 @@ type Shape interface {
 	toString()
 }
 
+// Duck Typing 🐤🐤🐤🐤🐤🐤🐤🐤 - "If it walks like a duck and QUACKS like a duck, then it must be a Duck"
+// here we don't care about which type of object(can be Square or Rectangle or something else) is passed, 
+// the only thing is it should implement all the methods of Shape. (then it becomes a duck)
+// Duck Typing is a programming concept where the type or class of an object is less important 
+// than the methods and attributes it possesses. (more importance is given to methods, attributes)
 func displayAreaInfo(shape Shape) {
 	fmt.Printf("Area of %T is : %v\n", shape, shape.calculateArea())
 }
+
+// just to ensure Square implements all the methods of Shape we can add this below line.
+// if a new method is added to Shape interface, we will get compile error here indicating that we need to implement new method
+var _ Shape = (*Square)(nil) // nil pointer of type Square
 
 // Square 🟧
 type Square struct {
@@ -96,3 +106,33 @@ func interfacesInGo() {
 
 	fmt.Printf("\n -------> BLOCK:END INTERFACE in Go Lang <------- \n")
 }
+
+// func (s Square) calculateArea() float64
+// This is a value receiver. That means BOTH work:
+var _ Shape = Square{}
+var _ Shape = (*Square)(nil)
+
+// because methods with value receivers belong to:
+//  - Square
+//  - *Square
+
+// But if you change to pointer receiver
+// func (s *Square) calculateArea() float64 {
+// 	return s.side * s.side
+// }
+
+// Now ONLY this works:
+// var _ Shape = (*Square)(nil)
+
+// THIS FAILS:
+// var _ Shape = Square{}
+
+// because Square itself no longer has that method.
+// Only *Square does.
+
+// Rule to remember
+// Value receiver
+// func (s Square) method()
+// Implemented by BOTH:
+//  - Square
+//  - *Square
