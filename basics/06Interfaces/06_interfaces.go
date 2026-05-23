@@ -130,6 +130,11 @@ var _ Shape = (*Square)(nil)
 // because Square itself no longer has that method.
 // Only *Square does.
 
+// 💡💡💡💡💡💡💡💡💡
+// var _ Shape = (*Square)(nil)
+// this is more preferred compared to var _ Shape = Square{} because zero memory is allocated to nil - (*Square)(nil)
+// also most of the time in production application we will be using pointer receivers, so _ Shape = Square{} requires all the methods as value receivers
+// 💡💡💡💡💡💡💡💡
 // Rule to remember
 // Value receiver
 // func (s Square) method()
